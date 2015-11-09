@@ -9,25 +9,28 @@
         <script src="/demo/random/random-service.factory.js"></script>
         <script src="/demo/random/random.controller.js"></script>
         <style>
-            .done {
-                background-color: gray;
+            .text-danger {
             }
         </style>
     </head>
     <body ng-app="randomDemo">
         <div class="container" ng-controller="RandomController as randomVm">
-            <div class="row">
-                <div class="col-xs-12">
-                    <input class="btn btn-primary" type="button" value="Update" ng-click="randomVm.updateNextRandom()">
-                    <h4 ng-class="{'text-danger': isNaN(randomVm.randomNumber) }" ng-show="randomVm.message">{{randomVm.message}}</h4>
-                    <h3>Random: {{randomVm.randomNumber}}</h3>
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <span class="navbar-brand">Random demo</span>
                 </div>
-                <div ng-repeat="item in todoVm.list track by $index" class="col-xs-12">
-                    <h4 ng-class="{done: item.done}">
-                        <input type="checkbox" ng-model="item.done">
-                        {{item.text}}
-                        <input class="btn btn-default btn-xs" type="button" value="X" ng-click="todoVm.remove($index)">
-                    </h4>
+            </nav>
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <p>
+                        Get a random number from the service online. Faulty service returns random error with a 0.5 probability
+                    </p>
+                    <input class="btn btn-primary" type="button" value="Update" ng-click="randomVm.updateNextRandom()">
+                    <h4 ng-class="{'text-danger': randomVm.randomNumber === null }" ng-show="randomVm.message">{{randomVm.message}}</h4>
+                    <h3 ng-hide="randomVm.randomNumber === null">Random: {{randomVm.randomNumber}}</h3>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <textarea class="col-xs-12" disabled="true" ng-model="randomVm.messageHistory" rows="20"></textarea>
                 </div>
             </div>
         </div>

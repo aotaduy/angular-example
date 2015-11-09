@@ -27,7 +27,10 @@
             return $http.get('/api/random/faulty')
                 .then(function (response) {
                     service.values.push(response.data.value);
-                    return response.data.value;
+                    return response.data.value.toFixed(3);
+                }, function (response) {
+                    response.data.value = response.data.value.toFixed(3);
+                    return $q.reject(response);
                 });
         }
 
