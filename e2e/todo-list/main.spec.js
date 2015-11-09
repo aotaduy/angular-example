@@ -9,11 +9,15 @@ describe('Main View', function() {
   });
 
   it('should add checkbox', function() {
-    page.text = element(by.id('input'));
+    page.date = element(by.id('date'));
+    page.date.sendKeys('01/01/1980');
+
+    element(by.id('amount')).sendKeys("1");
+    element(by.id('description')).sendKeys("description");
+
+    element(by.cssContainingText('option', 'food')).click();
+
     page.button = element(by.id('add-button'));
-    page.text.sendKeys('write first protractor test');
-    page.button.click();
-    page.text.sendKeys('write second protractor test');
     page.button.click();
     var todoList = element.all(by.repeater('item in list'));
     expect(todoList.count()).to.eventually.equal(2);

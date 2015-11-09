@@ -6,28 +6,112 @@
         <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
         <script src="/demo/todo-list-controller/todo-list.controller.js"></script>
-
     </head>
-    <body>
+    <body ng-init="list=[]; index=-1; addBtnDisplay='inline'; updBtnDisplay='none';
+                   itemTypes=['food', 'transportation', 'lodging', 'financial', 'sales', 'other'];">
         <div class="container">
-            <div class="row" ng-init="list=[]">
+            <div class="row">
                 <h2>Todo List #{{list.length}}</h2>
             </div>
 
             <div class="row">
-                <div class="col-xs-12">
-                    <input id="input" type="text" ng-model="itemText">
-                    <input id="add-button" class="btn btn-default" type="button" value="Add" ng-click="list.push({text:itemText, done: false}); itemText = ''">
+                <div class="col-md-1 text-right">
+                    Date:
                 </div>
-                <div ng-repeat="item in list" class="col-xs-12">
-                    <h4>
-                        <input type="checkbox" ng-model="item.done">
-                        {{item.text}}
+                <div class="col-md-11">
+                    <input id="input" type="text" ng-model="date">
+                </div>
+                <div class="col-md-1 text-right">
+                    Type:
+                </div>
+                <div class="col-md-11">
+                    <select ng-model="type">
+                        <option ng-repeat="type in itemTypes" value="{{type}}">{{type}}</option>
+                    </select>
+                </div>
+                <div class="col-md-1 text-right">
+                    Description:
+                </div>
+                <div class="col-md-11">
+                    <input id="input" type="text" ng-model="description">
+                </div>
+                <div class="col-md-1 text-right">
+                    Amount:
+                </div>
+                <div class="col-md-11">
+                    <input id="input" type="number" ng-model="amount">
+                </div>
+                <div class="col-md-1 text-right">
+                </div>
+                <div class="col-md-11">
+                    <input id="add-button" class="btn btn-default" type="button" value="Add" 
+                           ng-click="item={date:date, type: type, description: description, amount: amount};
+                                     date=''; type=''; description=''; amount='';
+                                     list.push(item);"
+                           style="display:{{addBtnDisplay}};">
+
+                    <input id="cancel-button" class="btn btn-default" type="button" value="Cancel" 
+                           ng-click="addBtnDisplay='inline'; updBtnDisplay='none';
+                                     date=''; type=''; description=''; amount='';
+                                     addBtnDisplay='inline'; 
+                                     updBtnDisplay='none';" 
+                           style="display:{{updBtnDisplay}};">
+
+                    <input id="update-button" class="btn btn-default" type="button" value="Update" 
+                           ng-click="list[index]={date:date, type: type, description: description, amount: amount}; 
+                                     date=''; type=''; description=''; amount='';
+                                     addBtnDisplay='inline'; 
+                                     updBtnDisplay='none';" 
+                           style="display:{{updBtnDisplay}};">
+                </div>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>Description</th>
+                  <th>Amount</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>           
+                  <tr ng-repeat="item in list">
+                      <td>{{item.date}}</td>
+                      <td>{{item.type}}</td>
+                      <td>{{item.description}}</td>
+                      <td>{{item.amount}}</td>
+                      <td>
                         <input class="btn btn-default btn-xs" type="button" value="X" ng-click="list.splice(list.indexOf(item), 1)">
-                    </h4>
-                </div>
+                        <input class="btn btn-xs" type="button" value="E" 
+                               ng-click="$parent.description=item.description;
+                                         $parent.date=item.date;
+                                         $parent.type=item.type;
+                                         $parent.amount=item.amount;
+                                         $parent.index=list.indexOf(item);
+                                         $parent.addBtnDisplay='none';
+                                         $parent.updBtnDisplay='inline';">
+                      </td>
+                  </tr>
+              </tbody>
+            </table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>           
+                  <tr ng-repeat="type in itemTypes">
+                      <td>{{type}}</td>
+                      <td ng-init="total=0;" ng-repeat="item in list | filter: type">{{total+item.amout * 1}}</td>
+                  </tr>
+              <tbody>
+            </table>
+
+            <div>
             </div>
         </div>
     </body>
-
 </html>
