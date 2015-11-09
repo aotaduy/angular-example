@@ -1,0 +1,23 @@
+<html ng-app>
+    <head>
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+    </head>
+    <body>
+        <div class="container">
+            <form>dasdasdas
+                <h2>Text Analyzer</h2>d
+                <textarea class="form-control" id="input" rows="3" ng-model="text" placeholder="Enter text to be processed"></textarea>
+                <h2>Stats</h2>
+                <h3>Chars: <span id="chars">{{text.length}}</span> Words: <span>{{(text.split(' ')).length}}</span></h3>
+                <ul>
+                    <li ng-repeat="word in (text.split(' ')) | orderBy">{{word | uppercase}}</li>
+                </ul>
+            </form>
+        </div>
+    </body>
+
+</html>
