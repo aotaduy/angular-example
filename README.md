@@ -37,7 +37,7 @@ I haven't tested with newer versions but it should work anyway.
 
 ## For both envs
 ````
-npm install grunt bower -g
+npm install grunt-cli bower -g
 git clone https://github.com/aotaduy/angular-course.git
 npm install
 bower install
