@@ -7,7 +7,7 @@ module.exports = function(config) {
     basePath: '',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['mocha', 'sinon-chai'],
+    frameworks: ['mocha', 'sinon-chai', 'chai-as-promised', 'chai'],
 
     // list of files / patterns to load in the browser
     files: [
@@ -23,6 +23,7 @@ module.exports = function(config) {
       'client/app/app.js',
       'client/app/**/*.js',
       'client/components/**/*.js',
+      'client/demo/**/*.js',
       //'client/app/**/*.jade',
       //'client/components/**/*.jade',
       'client/app/**/*.html',
@@ -35,7 +36,8 @@ module.exports = function(config) {
       '**/*.jade': 'ng-jade2js',
       '**/*.html': 'html2js',
       '**/*.coffee': 'coffee',
-      'client/app/**/*.js' : ['coverage']
+      'client/app/**/*.js' : ['coverage'],
+      'client/demo/**/*.js' : ['coverage']
     },
 
     ngHtml2JsPreprocessor: {

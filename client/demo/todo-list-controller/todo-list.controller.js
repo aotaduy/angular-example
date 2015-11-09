@@ -3,7 +3,7 @@
 
     // Create module and controller
     angular
-        .module('todoListDemo', [])
+        .module('todoListControllerDemo', [])
         .controller('TodoListController', TodoListController);
 
 

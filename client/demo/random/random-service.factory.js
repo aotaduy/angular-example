@@ -9,15 +9,18 @@
 
     randomFactory.$inject = [
         '$http',
-        '$q'
+        '$q',
+        '$timeout'
     ];
 
-    function randomFactory($http, $q) {
+    function randomFactory($http, $q, $timeout) {
         var service =  {
             values: [],
+            mean: mean,
             getRandom: getRandom,
-            getLocal: getLocal,
-            mean: mean
+            getRandomDeferred: getRandomDeferred,
+            getRandomArray: getRandomArray,
+            getLocal: getLocal
 
         };
 
@@ -34,8 +37,35 @@
                 });
         }
 
+        /* Answer an array with <size> number of random numbers */
+        function getRandomArray(size){
+            var calls = [];
+            for (var i = 0; i < size; i++){
+                calls.push($http.get('/api/random/slow').then(function (response) {
+                    return response.data.value.toFixed(3);
+                }));
+            }
+            return $q.all(calls);
+        }
+
         function getLocal(){
             return $q.when({value: Math.random()});
+        }
+
+        function getRandomDeferred(){
+            var deferred = $q.defer();
+            $timeout(function () {
+                var number = Math.random().toFixed(3);
+                if (number < 0.5){
+                    deferred.reject({
+                        status: 404,
+                        data: {value: number }
+                    });
+                } else {
+                    deferred.resolve(number);
+                }
+            }, Math.random() * 2000);
+            return deferred.promise;
         }
 
         function mean(){
