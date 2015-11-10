@@ -83,7 +83,8 @@
                       <td>{{item.amount}}</td>
                       <td>
                         <input class="btn btn-default btn-xs" type="button" value="X" id="delete-{{$index}}"
-                               ng-click="list.splice(list.indexOf(item), 1)">
+                               ng-click="list.splice(list.indexOf(item), 1)"
+                               ng-hide="isEditing">
 
                         <input class="btn btn-xs" type="button" value="E" id="edit-{{$index}}" 
                                ng-click="$parent.description=item.description;
@@ -91,7 +92,8 @@
                                          $parent.type=item.type;
                                          $parent.amount=item.amount;
                                          $parent.index=list.indexOf(item);
-                                         $parent.isEditing=true;">
+                                         $parent.isEditing=true;"
+                               ng-hide="isEditing">
                       </td>
                   </tr>
               </tbody>
