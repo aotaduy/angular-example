@@ -28,18 +28,9 @@
         /* Adds an item to the todo list */
         function add(descTxt,dateTxt,typeDdl,amountTxt) {
            
-		   vm.list.push({desc:descTxt,date:dateTxt, typeExpense:typeDdl, amount:amountTxt});
-		   
-		    var searchTerm = typeDdl;
-           
-            var index = -1;
-            
-			for(var i = 0, len = vm.listTotal.length; i < len; i++) {
-                if (vm.listTotal[i].type === searchTerm) {
-                    index = i;
-                    break;
-                }
-            }
+		    vm.list.push({desc:descTxt,date:dateTxt, typeExpense:typeDdl, amount:amountTxt});
+		              
+			var index = getExpenseTypeIndex(typeDdl);
            
             if(index == -1){
                 vm.listTotal.push({type:typeDdl, total:amountTxt});
@@ -49,40 +40,32 @@
             }
         }
 
-		
+		/* Remove and item to the expenses list */
         function remove(indexList) {
 			
 			var amountTxt = vm.list[indexList].amount;
 			var typeExpenseTxt = vm.list[indexList].typeExpense;
 			
-			var indexTotal = -1;
-			
-			for(var i = 0, len = vm.listTotal.length; i < len; i++) {
-                if (vm.listTotal[i].type === typeExpenseTxt) {
-                    indexTotal = i;    
-					break;
-                }
-            }		
-			
+			var indexTotal = getExpenseTypeIndex(typeExpenseTxt);
+						
 			vm.list.splice(indexList,1);
 			
-			vm.listTotal[indexTotal].total = parseInt(vm.listTotal[indexTotal].total) - parseInt(amountTxt);   
-			
-			/*			
-			var countAmountBytype = 0;
-			
+			vm.listTotal[indexTotal].total = parseInt(vm.listTotal[indexTotal].total) - parseInt(amountTxt);   					      	
+        }
+
+		/* Get the index fro total list */
+		function getExpenseTypeIndex(searchTerm)
+		{
+		   var index = -1;
+            			
 			for(var i = 0, len = vm.listTotal.length; i < len; i++) {
-                if (vm.listTotal[i].type === typeExpenseTxt) {
-                    countAmountBytype++;    
+                if (vm.listTotal[i].type === searchTerm) {
+                    index = i;
+                    break;
                 }
-            }		
-           
-            if(countAmountBytype = 1){
-				vm.listTotal.splice(vm.list.indexOf(typeExpenseTxt), 1)		
             }
-            else{
-                vm.listTotal[index].total = parseInt(vm.listTotal[index].total) - parseInt(amountTxt);     
-            }*/        		
-        }			
+			
+			return index;
+		}
     }	 
 })();

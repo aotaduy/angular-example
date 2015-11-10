@@ -1,16 +1,15 @@
-.food {
-	background-color: gray;
-}
-.other {
-	background-color: red;
-}
-.finantial {
-	background-color: yellow;
-}
-.lodging {
-	background-color: blue;
-}
 .transp {
 	background-color: green;
 }
-
+.food {
+	background-color: gray;
+}
+.lodging {
+	background-color: red;
+}
+.financial {
+	background-color: blue;
+}
+.other {
+	background-color: yellow;
+}
