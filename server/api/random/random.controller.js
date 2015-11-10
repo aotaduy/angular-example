@@ -9,8 +9,6 @@
 
 'use strict';
 
-var _ = require('lodash'),
-    MovieDB = require('moviedb')(process.env.MOVIEDB_API);
 
 // Get list of things
 exports.fast = fast;
