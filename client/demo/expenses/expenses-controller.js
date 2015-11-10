@@ -30,7 +30,7 @@
            
 		    vm.list.push({desc:descTxt,date:dateTxt, typeExpense:typeDdl, amount:amountTxt});
 		              
-			var index = getExpenseTypeIndex(typeDdl);
+			var index = getIndexFromTotalListByType(typeDdl);
            
             if(index == -1){
                 vm.listTotal.push({type:typeDdl, total:amountTxt});
@@ -46,15 +46,15 @@
 			var amountTxt = vm.list[indexList].amount;
 			var typeExpenseTxt = vm.list[indexList].typeExpense;
 			
-			var indexTotal = getExpenseTypeIndex(typeExpenseTxt);
+			var indexTotal = getIndexFromTotalListByType(typeExpenseTxt);
 						
 			vm.list.splice(indexList,1);
 			
 			vm.listTotal[indexTotal].total = parseInt(vm.listTotal[indexTotal].total) - parseInt(amountTxt);   					      	
         }
 
-		/* Get the index fro total list */
-		function getExpenseTypeIndex(searchTerm)
+		/* Get the index from total list */
+		function getIndexFromTotalListByType(searchTerm)
 		{
 		   var index = -1;
             			
