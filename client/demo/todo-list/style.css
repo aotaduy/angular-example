@@ -1,0 +1,15 @@
+.transp {
+	background-color: green;
+}
+.food {
+	background-color: gray;
+}
+.lodging {
+	background-color: red;
+}
+.financial {
+	background-color: blue;
+}
+.other {
+	background-color: yellow;
+}
