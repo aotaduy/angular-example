@@ -5,19 +5,113 @@
         <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+        <title>Expense App Assignment1</title>
     </head>
     <body>
-        <div class="container">
-            <form>dasdasdas
-                <h2>Text Analyzer</h2>d
-                <textarea class="form-control" id="input" rows="3" ng-model="text" placeholder="Enter text to be processed"></textarea>
-                <h2>Stats</h2>
-                <h3>Chars: <span id="chars">{{text.length}}</span> Words: <span>{{(text.split(' ')).length}}</span></h3>
-                <ul>
-                    <li ng-repeat="word in (text.split(' ')) | orderBy">{{word | uppercase}}</li>
-                </ul>
-            </form>
+        <div class="container" 
+            ng-init="
+                expenses = []; 
+                types= ['food', 'transportation', 'lodging', 'financial', 'sales', 'other.'];
+                isEditing = false;
+                index = -1;">
+            <h1>Expenses</h1>
+            <div class="create_expense">
+                <!-- <form name="expenseForm" ng-init="expense = {};"> -->
+                <form ng-init="expense = {};">
+                    <h4>Create Expense</h4>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="text" hidden ng-model="expense.id" />
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Date" ng-model="expense.date" />
+                            </div>
+                            <div class="form-group">
+                                <select id="type" name="type" class="form-control" ng-model="expense.type" ng-options="option for option in types track by option">
+                                    <option value="">-- Select type --</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Description" ng-model="expense.description" />
+                            </div>
+                            <div class="form-group">
+                                <input type="number" class="form-control" placeholder="Amount" ng-model="expense.amount" />
+                            </div>
+                            <div>
+                                <input type="button" id="create-button" value="Create" class="btn btn-primary"
+                                    ng-click="expense.id = (expenses.length)+1;
+                                              expenses.push(expense);
+                                              expense = {};"
+                                    ng-hide="isEditing">
+                                <input type="button" id="update-button" value="Update" class="btn btn-primary" 
+                                    ng-click="expenses[index] = expense;;
+                                              expense = {};
+                                              isEditing = false;"
+                                    ng-show="isEditing">
+                                <input type="button" id="cancel-button" value="Cancel" class="btn btn-primary" 
+                                    ng-click="expense = {}; 
+                                              isEditing = false;"
+                                    ng-show="isEditing">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="display_expenses">
+                <table class="table">
+                    <thead>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="exp in expenses track by exp.id">
+                           <td>{{ exp.date | date: 'dd/MM/yy'}}</td> 
+                           <td>{{ exp.type }}</td>
+                           <td>{{ exp.description }}</td>
+                           <td>{{ exp.amount }}</td>
+                           <td>
+                                <button class="btn btn-default" 
+                                    ng-click="$parent.expense = exp;
+                                              $parent.isEditing = true;
+                                              $parent.index = expenses.indexOf(exp);">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </button>
+                                <button class="btn btn-default" 
+                                    ng-click="expenses.splice(expenses.indexOf(exp),1)">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                           </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+                <div class="row">
+                <h3>Totals by Type</h3>
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <table class="table" id="totals_table">
+                            <thead>
+                              <th>Type</th>
+                              <th>Total</th>
+                            </thead>
+                            <tbody>           
+                                <tr ng-repeat="type in types">
+                                    <td>{{type}}</td>
+                                    <td ng-init="total=0;" 
+                                            ng-repeat="exp in expenses | filter: type">{{ exp.amount + total }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <h3>Total All Types</h3>
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <p ng-init="total=0;" ng-repeat="exp in expenses">{{ exp.amount + total}}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
-
 </html>
