@@ -16,14 +16,14 @@
 		var vm = this;
 		
         // Initialization
-        vm.list = [];
-		vm.listTotal = [];
-        
-		vm.itemText = '';
+        vm.types = ["food","transportation","lodging","financial","other"];
+		vm.list = [];
+		vm.listTotal = []; 
 
         // Controller methods
         vm.add = add;
         vm.remove = remove;
+		vm.edit = edit;
 
         /* Adds an item to the todo list */
         function add(descTxt,dateTxt,typeDdl,amountTxt) {
@@ -38,6 +38,8 @@
             else{
                 vm.listTotal[index].total = parseInt(vm.listTotal[index].total) + parseInt(amountTxt);       
             }
+			
+			cleanForm();
         }
 
 		/* Remove and item to the expenses list */
@@ -52,7 +54,29 @@
 			
 			vm.listTotal[indexTotal].total = parseInt(vm.listTotal[indexTotal].total) - parseInt(amountTxt);   					      	
         }
+		
+		/* Edit a item from expenses list */
+		function edit(indexList) {
+			
+			var amountTxt = vm.list[indexList].amount;
+			var typeExpenseTxt = vm.list[indexList].typeExpense;
+			
+			var indexTotal = getIndexFromTotalListByType(typeExpenseTxt);
+						
+			vm.list.splice(indexList,1);
+			
+			vm.listTotal[indexTotal].total = parseInt(vm.listTotal[indexTotal].total) - parseInt(amountTxt);   					      	
+        }
 
+		/* Clean form test */
+		function cleanForm()
+		{
+		        
+			vm.descTxt = '';
+			vm.amountTxt = '';
+			vm.dateTxt = '';	
+		}
+		
 		/* Get the index from total list */
 		function getIndexFromTotalListByType(searchTerm)
 		{
@@ -67,5 +91,7 @@
 			
 			return index;
 		}
+		
+		
     }	 
 })();

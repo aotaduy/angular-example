@@ -17,62 +17,89 @@
     </head>
     <body ng-app="expensesApp">
         <div class="container" ng-controller="expensesController as expVM">
-            <div class="row">
-                <h2>Expenses #{{expVM.list.length}}</h2>    	
-                <div class="col-xs-12">
-                    <form>
-						<label for="descTxt" class="col-lg-2 control-label">Desc:</label>
-						<div class="col-lg-10">
+		<h2>Add Expense:</h2>      
+			<div class="row">                 	
+                <table class="table" class="col-xs-12">                   
+					<tr>
+						<td>
+						Desc
+						</td>			
+						<td>
+						Date
+						</td>
+						<td>
+						Amount
+						</td>
+						<td>
+						Type
+						<td>
+					</tr>
+					<tr>
+						<td>
 							<input id="descTxt" type="text" ng-model="expVM.descTxt">
-						</div class="col-lg-10">				
-						<label for="dateTxt" class="col-lg-2 control-label">Date:</label>
-						<div class="col-lg-10">
+						</td>
+						<td>							
 							<input ui-date id="dateTxt" type="text" ng-model="expVM.dateTxt">
-						</div>			
-						<label for="dateTxt" class="col-lg-2 control-label">Amount:</label>							
-						<div class="col-lg-10">
+						</td>	
+						<td>
 							<input id="dateTxt" type="text" ng-model="expVM.amountTxt">
-						</div>
-						<label for="typeDdl" class="col-lg-2 control-label">Type:</label>									
-						<div class="col-lg-10">
+						</td>
+						<td>
 							<select id="typeDdl" ng-model="expVM.typeDdl">
+								<option ng-repeat="item in expVM.types" value="{{item}}">{{item}}</option>
+							</select>
+							<!--<select id="typeDdl" ng-model="expVM.typeDdl">
 								<option value="food">food</option>
 								<option value="transportation">transportation</option>
 								<option value="lodging">lodging</option>
 								<option value="financial">financial</option>
 								<option value="other">other</option>
-							</select>						
-						</div>	
-						<div class="col-lg-10">						
-						<input id="add-button" class="btn btn-default" type="button" value="Add" 
-						ng-click="expVM.add(expVM.descTxt,expVM.dateTxt,expVM.typeDdl,expVM.amountTxt)">
-						</div>
-					 </form>
-                </div>
-			</div>		
-				<div ng-repeat="item in expVM.list track by $index" class="col-xs-12">					
-                    <h4 ng-class="{food: item.typeExpense == 'food',
+							</select> -->	
+						</td>							
+						<td>
+							<input id="add-button" class="btn btn-default" type="button" value="Add" 
+							ng-click="expVM.add(expVM.descTxt,expVM.dateTxt,expVM.typeDdl,expVM.amountTxt)">
+						</td>
+					</tr>																			
+                </table>			
+			</div>									
+			<div class="row">
+				<h2 ng-show="expVM.list.length > 0">Items (#{{expVM.list.length}}):</h2>
+				<table class="table" ng-repeat="item in expVM.list track by $index" class="col-xs-12">					
+					<tr ng-class="{food: item.typeExpense == 'food',
 					transp: item.typeExpense == 'transportation',
 					lodging: item.typeExpense == 'lodging',
 					other: item.typeExpense == 'other',
-					financial: item.typeExpense == 'financial'}">                          
-                        {{ item.desc }}
-						{{ item.date | date:'shortDate' }}
-						{{ item.typeExpense }}
-						{{ item.amount | currency }}							
-                        <input class="btn btn-default btn-xs" type="button" value="X" ng-click="expVM.remove($index)">
-                    </h4>
-			</div>		
-			<div class="row">
-			    <div class="col-xs-12">
-					<h2>Totals:</h2>	
-					<div ng-repeat="item in expVM.listTotal" class="col-xs-12">
-						<h4 ng-show="item.total > 0">
+					financial: item.typeExpense == 'financial'}">
+						<td>
+							{{ item.desc }}
+						</td>
+						<td>
+							{{ item.date | date:'shortDate' }}
+						</td>
+						<td>
+							{{ item.typeExpense }}
+						</td>
+						<td>
+							{{ item.amount | currency }}	
+						</td>
+						<td>
+							<input class="btn btn-default btn-xs" type="button" value="Edit" ng-click="expVM.edit($index)">
+							<input class="btn btn-default btn-xs" type="button" value="Delete" ng-click="expVM.remove($index)">
+						</td>
+					</tr>
+			</table>
+			</div>			
+			<div class="row">			    
+				<h2 ng-show="expVM.list.length > 0">Totals:</h2>	
+				<table ng-repeat="item in expVM.listTotal" class="col-xs-12">
+					<tr ng-show="item.total > 0">
+						<td>
 							{{item.type}} : {{item.total}}
-						</h4>                   
-					</div>	
-				</div>
-			</div>		
+						</td>
+					</tr>                   
+				</table>	
+			</div>
 		</div>		
     </body>	
 </html>
