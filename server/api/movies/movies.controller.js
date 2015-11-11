@@ -104,8 +104,12 @@ function configuration(req, res){
 }
 
 function get(req, res) {
-    MovieDB.movieInfo({id: req.params.id}, function(err, response){
-        res.json(response);
+    MovieDB.movieInfo({id: req.params.movieId}, function(err, response){
+        MovieDB.movieSimilar({id: req.params.movieId}, function (errSimilar, responseSimilar) {
+          response.similar = responseSimilar;
+          res.json(response);
+        })
+        
     });
 }
 

@@ -11,7 +11,7 @@ if (!process.env.MOVIEDB_API) {
 } else {
     var controller = require('./movies.controller');
     router.get('/', controller.index);
-    router.get('/:movieId', controller.get);
+    router.get('/info/:movieId', controller.get);
     router.get('/configuration', controller.configuration);
     router.get('/playing', controller.nowPlaying);
     router.get('/search/:query', controller.search);
