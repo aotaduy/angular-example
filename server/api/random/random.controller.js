@@ -9,8 +9,6 @@
 
 'use strict';
 
-var _ = require('lodash'),
-    MovieDB = require('moviedb')(process.env.MOVIEDB_API);
 
 // Get list of things
 exports.fast = fast;
@@ -24,7 +22,7 @@ function fast(req, res) {
 function slow(req, res) {
     setTimeout(function() {
         res.json({value: Math.random()});
-    }, 1000);
+    }, Math.floor(2000 * Math.random()));
 }
 
 function faulty(req, res) {
@@ -36,5 +34,5 @@ function faulty(req, res) {
             res.status(status);
         }
         res.json({value: value});
-    }, 1000);
+    }, Math.floor(1000 * Math.random()));
 }

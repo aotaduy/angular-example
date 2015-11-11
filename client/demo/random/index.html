@@ -17,17 +17,31 @@
         <div class="container" ng-controller="RandomController as randomVm">
             <nav class="navbar navbar-default">
                 <div class="navbar-header">
-                    <span class="navbar-brand">Random demo</span>
+                    <span class="navbar-brand">Random demo </span>
+                    <span class="navbar-brand">Current Mean: {{randomVm.getMean()}}</span>
                 </div>
             </nav>
             <div class="row">
+                <div class="col-xs-12">
+<pre>/api/random/faulty -> returns a number or an error if the number is < 0.5
+/api/random/slow -> returns a number with a random delay of between 0 and 2 secs
+/api/random/fast -> returns a number as fast as it can.</pre>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-sm-6 col-xs-12">
                     <p>
-                        Get a random number from the service online. Faulty service returns random error with a 0.5 probability
+                        Get a random number from the service online.
                     </p>
                     <input class="btn btn-primary" type="button" value="Update" ng-click="randomVm.updateNextRandom()">
                     <h4 ng-class="{'text-danger': randomVm.randomNumber === null }" ng-show="randomVm.message">{{randomVm.message}}</h4>
                     <h3 ng-hide="randomVm.randomNumber === null">Random: {{randomVm.randomNumber}}</h3>
+                    <p>
+                        Get an array of the size specified in the input
+                    </p>
+                    <input type="text" ng-model="randomVm.arraySize">
+                    <input class="btn btn-primary" type="button" value="Update" ng-click="randomVm.getRandomArray(randomVm.arraySize)">
+                    <h3 ng-hide="randomVm.randomArray.length === 0">Randoms: {{randomVm.randomArray}}</h3>
                 </div>
                 <div class="col-sm-6 col-xs-12">
                     <textarea class="col-xs-12" disabled="true" ng-model="randomVm.messageHistory" rows="20"></textarea>
