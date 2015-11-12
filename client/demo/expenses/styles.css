@@ -1,0 +1,14 @@
+body {
+}
+.form {margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #000;}
+.form input {margin-bottom: 10px;}
+.food div {background-color: #FBDDDD;}
+.transportation div {background-color: #C0DAC0;}
+.lodging div {background-color: #EAEAFF;}
+.financial div {background-color: #EEEEEE;}
+.sales div {background-color: #F9F99D;}
+.other div {background-color: #C5F5F5;}
+.row.total {font-weight: bold; margin-top: 15px; padding: 5px; border: 1px solid #CCC;}
+.type h3 {margin-top: 10px}
+.type .header {font-weight: bold; border-bottom: 1px solid #000;}
+.type .type-total {border-top: 1px solid #000;}
