@@ -1,0 +1,105 @@
+<html >
+    <head>
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>		
+		<script type="text/javascript" src="/bower_components/jquery-ui/jquery-ui.js"></script>
+		<script type="text/javascript" src="/bower_components/angular/angular.js"></script>
+		<script type="text/javascript" src="/bower_components/angular-ui-date/src/date.js"></script>
+        <script src="/demo/expenses/expenses-controller.js"></script>
+		
+		<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+		<link rel="stylesheet" href="/demo/expenses/style.css">
+		<link rel="stylesheet" href="/bower_components/jquery-ui/themes/smoothness/jquery-ui.css"/>
+		
+        </style>
+    </head>
+    <body ng-app="expensesApp">
+        <div class="container" ng-controller="expensesController as expVM">
+		<h2>Add Expense:</h2>      
+			<div class="row">                 	
+                <table class="table" class="col-xs-12">                   
+					<tr>
+						<td>
+						Desc
+						</td>			
+						<td>
+						Date
+						</td>
+						<td>
+						Amount
+						</td>
+						<td>
+						Type
+						<td>
+					</tr>
+					<tr>
+						<td>
+							<input id="descTxt" type="text" ng-model="expVM.descTxt">
+						</td>
+						<td>							
+							<input ui-date id="dateTxt" type="text" ng-model="expVM.dateTxt">
+						</td>	
+						<td>
+							<input id="dateTxt" type="text" ng-model="expVM.amountTxt">
+						</td>
+						<td>
+							<select id="typeDdl" ng-model="expVM.typeDdl">
+								<option ng-repeat="item in expVM.types" value="{{item}}">{{item}}</option>
+							</select>
+						</td>							
+						<td>
+							<input id="add-button" class="btn btn-default" type="button" value="Add" 
+							ng-click="expVM.add(expVM.descTxt,expVM.dateTxt,expVM.typeDdl,expVM.amountTxt)">
+						</td>
+					</tr>																			
+                </table>			
+			</div>									
+			<div class="row">
+				<h2 ng-show="expVM.list.length > 0">Items (#{{expVM.list.length}}):</h2>
+				<table class="table" ng-repeat="item in expVM.list track by $index" class="col-xs-12">					
+					<tr ng-class="{food: item.typeExpense == 'food',
+					transp: item.typeExpense == 'transportation',
+					lodging: item.typeExpense == 'lodging',
+					other: item.typeExpense == 'other',
+					financial: item.typeExpense == 'financial'}">
+						<td>
+							{{ item.desc }}
+						</td>
+						<td>
+							{{ item.date | date:'shortDate' }}
+						</td>
+						<td>
+							{{ item.typeExpense }}
+						</td>
+						<td>
+							<span ng-show="item.editing == false">{{ item.amount | currency }}</span>
+							<input ng-show="item.editing == true" id="dateTxt" type="text" ng-model="item.amount">
+						</td>
+						<td>
+							<div ng-show="item.editing == false">
+								<input class="btn btn-default btn-xs" type="button" value="Edit" ng-click="expVM.edit($index)">
+								<input class="btn btn-default btn-xs" type="button" value="Delete" ng-click="expVM.remove($index)">
+							</div>
+							<div ng-show="item.editing == true">
+								<input class="btn btn-default btn-xs" type="button" value="Save" ng-click="expVM.edit($index)">
+								<input class="btn btn-default btn-xs" type="button" value="Cancel" ng-click="expVM.cancel($index)">
+							</div>
+						</td>
+					</tr>
+			</table>
+			</div>			
+			<div class="row">			    
+				<h2 ng-show="expVM.list.length > 0">Totals:</h2>	
+				<table ng-repeat="item in expVM.listTotal" class="col-xs-12">
+					<tr ng-show="item.total > 0">
+						<td>
+							{{item.type}} : {{item.total}}
+						</td>
+					</tr>                   
+				</table>	
+			</div>
+		</div>		
+    </body>	
+</html>
