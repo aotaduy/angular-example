@@ -9,8 +9,7 @@
             restrict: 'E',
             templateUrl: 'app/components/movie-poster/movie-poster.html',
             scope: {
-                movie: '=',
-                type: '='
+                movie: '='
             }
         };
     }
