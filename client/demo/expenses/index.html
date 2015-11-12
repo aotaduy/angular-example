@@ -74,11 +74,18 @@
 							{{ item.typeExpense }}
 						</td>
 						<td>
-							{{ item.amount | currency }}	
+							<span ng-show="item.editing == false">{{ item.amount | currency }}</span>
+							<input ng-show="item.editing == true" id="dateTxt" type="text" ng-model="item.amount">
 						</td>
 						<td>
-							<input class="btn btn-default btn-xs" type="button" value="Edit" ng-click="expVM.edit($index)">
-							<input class="btn btn-default btn-xs" type="button" value="Delete" ng-click="expVM.remove($index)">
+							<div ng-show="item.editing == false">
+								<input class="btn btn-default btn-xs" type="button" value="Edit" ng-click="expVM.edit($index)">
+								<input class="btn btn-default btn-xs" type="button" value="Delete" ng-click="expVM.remove($index)">
+							</div>
+							<div ng-show="item.editing == true">
+								<input class="btn btn-default btn-xs" type="button" value="Save" ng-click="expVM.edit($index)">
+								<input class="btn btn-default btn-xs" type="button" value="Cancel" ng-click="expVM.cancel($index)">
+							</div>
 						</td>
 					</tr>
 			</table>
