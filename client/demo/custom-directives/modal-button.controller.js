@@ -3,7 +3,7 @@
 
     // Create module and controller
     angular
-        .module('custom-directives')
+        .module('custom-directives', [])
         .controller('ModalButtonController', ModalButtonController);
 
 
