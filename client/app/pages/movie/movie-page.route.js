@@ -13,8 +13,9 @@
 
         $stateProvider
           .state('movie-page', {
-                    url: '/movie/:movieId',
                     title: 'Movie',
+                    url: '/movie/:movieId',
+                    abstract: true,
                     templateUrl: 'app/pages/movie/movie-page.html',
                     controller: 'MoviePageController',
                     controllerAs: 'movieVm',
