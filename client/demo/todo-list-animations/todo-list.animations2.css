@@ -1,0 +1,28 @@
+.todo-item {
+	opacity:1;
+}
+
+.todo-item.ng-leave {
+  animation: bounceOutRight 1s;
+}
+
+
+.todo-item.ng-enter {
+  animation: bounceInLeft 1s;
+}
+
+.todo-item.ng-enter.ng-enter-active {
+  opacity:1;
+  margin-left: 0;
+}
+
+.done-add, .done-remove {
+	transition: all ease-in 0.5s;
+  animation: shake 0.5s;
+}
+
+.done {
+	opacity: 0.5;
+	background-color: gray;
+}
+

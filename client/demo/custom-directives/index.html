@@ -1,0 +1,52 @@
+<html >
+    <head>
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+        <!-- Include file with the controller -->
+        <script src="/demo/custom-directives/validate-password.directive.js"></script>
+        <script src="/demo/custom-directives/modal-button.directive.js"></script>
+        <script src="/demo/custom-directives/modal-button.controller.js"></script>
+        <style>
+            .min-size {
+                border: 2px solid red;
+                padding:10px;
+            }
+        </style>
+    </head>
+    <body ng-app="custom-directives">
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <span class="navbar-brand">Custom Directives demo </span>
+
+                </div>
+            </nav>
+            <div class="row" ng-init="number=0">
+                <div class="col-sm-6 col-xs-12">
+                    <label>Text 4 - 10 </label>
+                    <input type="text" validate-password min-length="4" max-length="10" show-message="true" ng-model="modalTitle">
+                    
+                    <h3>{{modalTitle}}</h3>
+                    <label>Text 2 - 10 </label>
+                    <input type="text" validate-password min-length="2" max-length="10" show-message="false" ng-model="text">
+                    <h3>{{text}}</h3>
+                    <label>Number 0 - 5 </label>
+                    <input type="number" validate-password min-length="0" max-length="5" show-message="false" ng-model="number">
+
+                    <modal-button 
+                        title="modalTitle"
+                        button-text="Button Text"
+                        on-cancel="number = number + 1">
+                            <h2>This is a test </h2> 
+                            <p>This is a test to reproduce a modal with a transclusion directive</p>
+                            <h4> {{modalTitle}} this is a test: {{text}}</h4>
+                            <h5>{{number}}</h5>
+                    </modal-button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -20,13 +20,16 @@
             cachedConfiguration: null,
             topRatedMovies: topRatedMovies,
             configuration: configuration,
-            search: search
+            search: search,
+            movieInfo: movieInfo
         };
 
         function topRatedMovies() {
             return $http.get('/api/movies/');
         }
-
+        function movieInfo(movieId) {
+            return $http.get('/api/movies/info/' + movieId);
+        }
         function search(query) {
             return $http.get('/api/movies/search/' + query);
         }
