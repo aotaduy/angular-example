@@ -3,7 +3,7 @@
 
     // Create module and controller
     angular
-        .module('todoListControllerDemo', [])
+        .module('todoListAnimationsDemo', ['ngAnimate'])
         .controller('TodoListController', TodoListController);
 
 

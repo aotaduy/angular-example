@@ -12,8 +12,13 @@ var config = require('./config/environment');
 // Setup server
 var app = express();
 var server = require('http').createServer(app);
+var Datastore = require('nedb');
+app.db = new Datastore({ filename: './cache.nedb', autoload: true });
+
 require('./config/express')(app);
 require('./routes')(app);
+
+//Open database
 
 // Start server
 server.listen(config.port, config.ip, function () {

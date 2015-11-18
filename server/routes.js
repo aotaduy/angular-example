@@ -14,7 +14,8 @@ module.exports = function(app) {
 
   // Insert routes below
   app.use('/api/things', require('./api/thing'));
-  app.use('/api/movies', require('./api/movies'));
+  app.use('/api/movies', require('./api/movies')(app));
+  app.use('/api/random', require('./api/random'));
   // Serve demo directory
   app.use('/demo/', serveIndex(demoDir, {'icons': true}));
 

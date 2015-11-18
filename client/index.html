@@ -13,6 +13,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -53,12 +54,13 @@
       <!-- bower:js -->
       <script src="bower_components/jquery/dist/jquery.js"></script>
       <script src="bower_components/angular/angular.js"></script>
-      <script src="bower_components/angular-resource/angular-resource.js"></script>
-      <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-      <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+      <script src="bower_components/angular-animate/angular-animate.js"></script>
       <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-      <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+      <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+      <script src="bower_components/angular-resource/angular-resource.js"></script>
+      <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+      <script src="bower_components/lodash/dist/lodash.compat.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
 
@@ -70,6 +72,7 @@
           <script src="app/components/filters/common-filters.module.js"></script>
           <script src="app/components/filters/common-filters.words.filter.js"></script>
           <script src="app/components/movie-listing/movie-listing.directive.js"></script>
+          <script src="app/components/movie-poster/movie-poster.directive.js"></script>
           <script src="app/components/movie/movie.directive.js"></script>
           <script src="app/components/movies-connector/connector.module.js"></script>
           <script src="app/components/movies-connector/moviesConnector.factory.js"></script>
@@ -82,6 +85,11 @@
           <script src="app/pages/homepage/home.route.js"></script>
           <script src="app/pages/listing/listing-page.controller.js"></script>
           <script src="app/pages/listing/listing-page.route.js"></script>
+          <script src="app/pages/movie/movie-page.controller.js"></script>
+          <script src="app/pages/movie/movie-page.debug.route.js"></script>
+          <script src="app/pages/movie/movie-page.edit.route.js"></script>
+          <script src="app/pages/movie/movie-page.route.js"></script>
+          <script src="app/pages/movie/movie-page.similar.route.js"></script>
           <script src="app/pages/search/search-page.controller.js"></script>
           <script src="app/pages/search/search-page.route.js"></script>
           <script src="components/modal/modal.service.js"></script>

@@ -1,4 +1,2 @@
-<h4>{{movie.title}}</h4>
-<img class="poster" ng-src="http://image.tmdb.org/t/p/w154/{{movie.poster_path}}" alt="{{movie.title}}"
-     uib-popover="{{movie.overview | limitTo: 100}}" popover-trigger="mouseenter">
+<movie-poster movie="movie"></movie-poster>
 <a href="/movie/{{movie.id}}" class="btn btn-primary btn-xs" role="button">Read more</a>
