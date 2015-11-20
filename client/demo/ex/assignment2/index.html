@@ -4,19 +4,23 @@
         <script src="/bower_components/angular/angular.js"></script>
         <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-        <script src="app.js"></script>
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
 
-        <title>Expense App Assignment1</title>
+        <!-- AngularJS App -->
+        <script src="app.js"></script>
+        <script src="expensesController.js"></script>
+
+        <title>Expense App Assignment2</title>
     </head>
     <body ng-controller="ExpenseController as exp">
         <div class="container">
             <h1>Expenses</h1>
-            <div class="create_expense">
+            <div class="create_expense well well-lg">
                 <form name="expenseForm">
                     <h4>Create Expense</h4>
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
+                            <input type="text" hidden ng-model="exp.expense.id" />
                             <div class="form-group">
                                 <input type="date" class="form-control" placeholder="Date" ng-model="exp.expense.date" />
                             </div>
@@ -33,13 +37,14 @@
                             </div>
                             <div>
                                 <input type="button" id="create-button" value="Create" class="btn btn-primary" ng-click="exp.newExpense()" ng-hide="exp.isEditing">
-                                <input type="button" id="update-button" value="Update" class="btn btn-primary" ng-click="exp.update(exp)" ng-show="exp.isEditing">
+                                <input type="button" id="update-button" value="Update" class="btn btn-primary" ng-click="exp.update(index, exp.expense)" ng-show="exp.isEditing">
                                 <input type="button" id="cancel-button" value="Cancel" class="btn btn-primary" ng-click="exp.cancel()" ng-show="exp.isEditing">
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
+            <hr>
             <div class="display_expenses">
                 <table class="table">
                     <thead>
@@ -49,7 +54,7 @@
                         <th>Amount</th>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="expen in exp.expenses track by $index">
+                        <tr ng-repeat="expen in exp.expenses track by expen.id">
                            <td>{{ expen.date | date: 'dd/MM/yy'}}</td> 
                            <td>{{ expen.type }}</td>
                            <td>{{ expen.description }}</td>
@@ -67,26 +72,38 @@
                 </table>
                 <hr>
                 <div class="row">
-                <h3>Totals by Type</h3>
-                    <div class="col-sm-6 col-sm-offset-3">
-                        <table class="table" id="totals_table">
-                            <thead>
-                              <th>Type</th>
-                              <th>Total</th>
-                            </thead>
-                            <tbody>           
-                                <tr ng-repeat="type in types">
-                                    <td>{{type}}</td>
-                                    <td ng-repeat="e in exp.expenses | filter: type">{{ e.amount + total }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Totals by Type
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <table class="table" id="totals_table">
+                                    <thead>
+                                        <th>Type</th>
+                                        <th>Total</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="type in exp.types" ng-if="exp.getTotalByType(type) > 0" ng-style="exp.setColor(type)">
+                                            <td>{{ type }}</td>
+                                            <td>{{ exp.getTotalByType(type) }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <h3>Total All Types</h3>
                 <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3">
-                        <p ng-init="total=0;" ng-repeat="e in exp.expenses">{{ e.amount + total}}</p>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Total All Types
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <p class="text-center">Total: <strong>{{ exp.getTotal() }}</strong></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
