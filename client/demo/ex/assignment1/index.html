@@ -57,7 +57,7 @@
                 </form>
             </div>
             <div class="display_expenses">
-                <table class="table">
+                <table class="table items">
                     <thead>
                         <th>Date</th>
                         <th>Type</th>
@@ -66,18 +66,18 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="exp in expenses track by exp.id">
-                           <td>{{ exp.date | date: 'dd/MM/yy'}}</td> 
+                           <td>{{ exp.date | date: 'MM/dd/yy'}}</td>
                            <td>{{ exp.type }}</td>
                            <td>{{ exp.description }}</td>
                            <td>{{ exp.amount }}</td>
                            <td>
-                                <button class="btn btn-default" 
+                                <button class="btn btn-default edit-expense"
                                     ng-click="$parent.expense = exp;
                                               $parent.isEditing = true;
                                               $parent.index = expenses.indexOf(exp);">
                                     <i class="glyphicon glyphicon-pencil"></i>
                                 </button>
-                                <button class="btn btn-default" 
+                                <button class="btn btn-default delete-expense"
                                     ng-click="expenses.splice(expenses.indexOf(exp),1)">
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </button>
