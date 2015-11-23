@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+        <!-- Include file with the controller -->
+        <script src="/demo/validation/same-letters.directive.js"></script>
+        <script src="/demo/validation/emailCom.directive.js"></script>
+
+        <style>
+                input.ng-invalid {
+                    border: 1px solid red;
+                }
+                
+                span.btn {
+                    display: none;
+                }
+
+                .ng-invalid span.btn, .ng-dirty span.btn-default{
+                    display: block;
+                }
+        </style>
+    </head>
+    <body ng-app="customValidation">
+        <div class="container">
+            <form name="theForm">
+            <div class="row">
+                <div class="col-xs-12">
+                <h3>User Registration</h3>
+                <div class="form-group">
+                    <label for="exampleInputName">Name</label>
+                    <input type="text" ng-model="name" class="form-control" id="exampleInputName" placeholder="Name">
+                  </div>
+                    <div class="form-group">
+                    <label for="exampleInputName">Debounced on blur</label>
+                    <input type="text" ng-model="nameDebounced" ng-model-options="{updateOn: 'keypress', debounce: {default: 1000, blur: 1000}}"class="form-control" id="exampleInputName" placeholder="Name">
+                    <label>{{nameDebounced}}</label>
+                  </div>
+                 <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" ng-model="mail" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address .Com</label>
+                    <input type="email" email-com ng-model="mail2" class="form-control" id="exampleInputEmail2" placeholder="Email">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" ng-model="password2" class="form-control" id="exampleInputPassword1" placeholder="Password" minlength="4" maxlength="12">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Same Quantity p of Letters and Numbers</label>
+                    <input type="text"  same-letters-numbers ng-model="same" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox"> Check me out
+                    </label>
+                  </div>
+                  <button type="submit" class="btn btn-default" ng-click="vm.submit()">Submit</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                <span class="btn btn-danger">Form invalid</span>
+                <span class="btn btn-default">Form Touched</span>
+                
+
+                <pre>{{theForm | json}}</pre>
+                </div>
+            </div>
+           </form>
+
+        </div>
+    </body>
+
+</html>
