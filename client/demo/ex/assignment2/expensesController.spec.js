@@ -12,18 +12,63 @@ describe('Controller: expensesController', function () {
     );
 
     it('should start empty', function () {
-        expect(controller.expenses.length).to.equal(2);
+        expect(controller.expenses.length).to.equal(0);
     });
 
-    //it('should add items', function () {
-    //    controller.itemText = 'First item';
-    //    controller.add(controller.itemText);
-    //    expect(controller.list.length).to.equal(1);
-    //    controller.itemText = 'Second item';
-    //    controller.add(controller.itemText);
-    //    expect(controller.list.length).to.equal(2);
-    //    controller.remove(1);
-    //    expect(controller.list.length).to.equal(1);
-    //});
+    it('should add/remove items', function () {
+        //Create
+            //First expense
+            controller.expense.date = '09/06/1988';
+            controller.expense.type = 'transportation';
+            controller.expense.description = 'Testing Expense';
+            controller.expense.amount = 1000;
+            controller.newExpense();
+
+            expect(controller.expenses.length).to.equal(1);
+
+            //Second expense
+            controller.expense.date = '01/01/2015';
+            controller.expense.type = 'food';
+            controller.expense.description = 'Testing Expense 2';
+            controller.expense.amount = 10000;
+
+            controller.newExpense();
+
+            expect(controller.expenses.length).to.equal(2);
+
+        //Delete:
+            controller.delete(controller.expense);
+            expect(controller.expenses.length).to.equal(1);
+
+        //Edit:
+        //controller.expense = {};
+        //controller.expense.date = '09/06/1988';
+        controller.expense.type = 'transportation';
+        //controller.expense.description = 'Testing Expense';
+        //controller.expense.amount = 1000;
+        controller.update(controller.expense);
+        expect(controller.expenses[0].type).to.equal('financial');
+    });
 
 });
+
+//newExpense  OK
+//delete      OK
+//update
+
+//gettotal
+//gettotalbytype
+//setcolor
+
+
+//vm.update = function(index, exp){
+//    var selectedExpense = $filter('filter')(vm.expenses, {id: exp.id})[0];
+//    selectedExpense.date = exp.date;
+//    selectedExpense.type = exp.type;
+//    selectedExpense.description = exp.description;
+//    selectedExpense.amount = exp.amount;
+//
+//    vm.isEditing = false;
+//    vm.expense = {};
+//};
+//

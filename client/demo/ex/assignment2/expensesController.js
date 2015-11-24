@@ -31,7 +31,7 @@ function ExpenseController($filter){
         vm.isEditing = true;
     };
 
-    vm.update = function(index, exp){
+    vm.update = function(exp){
         var selectedExpense = $filter('filter')(vm.expenses, {id: exp.id})[0];
         selectedExpense.date = exp.date;
         selectedExpense.type = exp.type;

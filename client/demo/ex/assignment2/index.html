@@ -37,7 +37,7 @@
                             </div>
                             <div>
                                 <input type="button" id="create-button" value="Create" class="btn btn-primary" ng-click="exp.newExpense()" ng-hide="exp.isEditing">
-                                <input type="button" id="update-button" value="Update" class="btn btn-primary" ng-click="exp.update(index, exp.expense)" ng-show="exp.isEditing">
+                                <input type="button" id="update-button" value="Update" class="btn btn-primary" ng-click="exp.update(exp.expense)" ng-show="exp.isEditing">
                                 <input type="button" id="cancel-button" value="Cancel" class="btn btn-primary" ng-click="exp.cancel()" ng-show="exp.isEditing">
                             </div>
                         </div>
