@@ -46,7 +46,7 @@
             </div>
             <hr>
             <div class="display_expenses">
-                <table class="table">
+                <table class="table items">
                     <thead>
                         <th>Date</th>
                         <th>Type</th>
@@ -55,15 +55,15 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="expen in exp.expenses track by expen.id">
-                           <td>{{ expen.date | date: 'dd/MM/yy'}}</td> 
+                           <td>{{ expen.date | date: 'MM/dd/yy'}}</td>
                            <td>{{ expen.type }}</td>
                            <td>{{ expen.description }}</td>
                            <td>{{ expen.amount }}</td>
                            <td>
-                                <button class="btn btn-default" ng-click="exp.edit(expen)">
+                                <button class="btn btn-default edit-expense" ng-click="exp.edit(expen)">
                                     <i class="glyphicon glyphicon-pencil"></i>
                                 </button>
-                                <button class="btn btn-default" ng-click="exp.delete(expen)">
+                                <button class="btn btn-default delete-expense" ng-click="exp.delete(expen)">
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </button>
                            </td>

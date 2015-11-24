@@ -5,7 +5,7 @@
         .module('moviesApp')
         .config(configRouteMovieSimilar);
 
-        configRouteListing.$inject = [
+        configRouteMovieSimilar.$inject = [
             '$stateProvider'
         ];
 
