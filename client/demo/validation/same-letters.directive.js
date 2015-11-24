@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('customValidation', [])
+        .module('customValidation')
         .directive('sameLettersNumbers', sameLettersNumbersDirective);
         
         sameLettersNumbersDirective.$inject = [];
