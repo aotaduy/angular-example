@@ -39,36 +39,6 @@ describe('Controller: expensesController', function () {
         //Delete:
             controller.delete(controller.expense);
             expect(controller.expenses.length).to.equal(1);
-
-        //Edit:
-        //controller.expense = {};
-        //controller.expense.date = '09/06/1988';
-        controller.expense.type = 'transportation';
-        //controller.expense.description = 'Testing Expense';
-        //controller.expense.amount = 1000;
-        controller.update(controller.expense);
-        expect(controller.expenses[0].type).to.equal('financial');
     });
 
 });
-
-//newExpense  OK
-//delete      OK
-//update
-
-//gettotal
-//gettotalbytype
-//setcolor
-
-
-//vm.update = function(index, exp){
-//    var selectedExpense = $filter('filter')(vm.expenses, {id: exp.id})[0];
-//    selectedExpense.date = exp.date;
-//    selectedExpense.type = exp.type;
-//    selectedExpense.description = exp.description;
-//    selectedExpense.amount = exp.amount;
-//
-//    vm.isEditing = false;
-//    vm.expense = {};
-//};
-//
