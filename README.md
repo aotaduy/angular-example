@@ -38,7 +38,8 @@ I haven't tested with newer versions but it should work anyway.
 ## For both envs
 ````
 npm install grunt-cli bower -g
-git clone https://github.com/aotaduy/angular-course.git
+git clone https://github.com/aotaduy/angular-example.git
+cd angular-example
 npm install
 bower install
 npm run update-webdriver
@@ -50,9 +51,13 @@ The movie db example application uses the REST API at https://www.themoviedb.org
 
 Before running ``grunt serve`` you should set the environment variable (this is a fake key you shuld add your own):
 ````
+In  Windows
 set MOVIEDB_API=72fa50138ba3dcfd588fd59a1375a810
 ````
-
+````
+In  Linux
+export MOVIEDB_API=72fa50138ba3dcfd588fd59a1375a810
+````
 ## To run the app
 ````
 grunt serve
