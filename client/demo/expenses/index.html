@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="/bower_components/angular-mocks/angular-mocks.js"></script>
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body ng-app="expensesDemo">
+        <div class="container" ng-controller="ExpensesController as expensesVm">
+            <div class="row">
+                <h2>Expenses calc</h2>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form">
+                <form name="expenseForm">
+                    <label>Date</label><br/>
+                    <input id="date" type="date" ng-model="expensesVm.expenseDate"><br/>
+                    <label>Type</label><br/>
+                    <select id="type" ng-model="expensesVm.expenseType" ng-options="expenseType.name as expenseType.value for expenseType in expensesVm.expensesTypes">
+                        <option value="">Expense type</option>
+                    </select><br/>
+
+                    <label>Description</label><br/>
+                    <input id="description" type="text" ng-model="expensesVm.expenseDescription"><br/>
+                    <label>Amount</label><br/>
+                    <input id="amount" name="amount" type="number" min="0" ng-model="expensesVm.expenseAmount"><br/>
+                    <input id="add-button" class="btn btn-default" type="button" value="Add" ng-click="expensesVm.add(expensesVm.expenseDate, expensesVm.expenseType, expensesVm.expenseDescription, expensesVm.expenseAmount)">
+                </form>
+                </div>
+                <div ng-repeat="typesList in expensesVm.expensesTypes" class="type">
+                    <div ng-if="expensesVm.total(typesList.name)" class="{{typesList.name}}">
+                    <h3>{{ typesList.name }}</h3>
+                    <div class="row header">
+                      <div class="col-md-3 col-xs-3">Date</div>
+                      <div class="col-md-3 col-xs-3">Description</div>
+                      <div class="col-md-3 col-xs-3">Amount</div>
+                      <div class="col-md-3 col-xs-3">Operations</div>
+                    </div>
+                    <div class="row expense">
+                        <div ng-repeat="expense in expensesVm.list | filter:{type:typesList.name} | orderBy:'type' track by expensesVm.list.indexOf(expense)" class="col-xs-12">
+                            <div class="col-md-3 col-xs-3">{{expense.date | date: 'dd/MM/yyyy'}}</div>
+                            <div class="col-md-3 col-xs-3">{{expense.description}}</div>
+                            <div class="col-md-3 col-xs-3">{{expense.amount}}</div>
+                            <div class="col-md-3 col-xs-3"><input class="btn btn-default btn-xs" type="button" value="X" ng-click="expensesVm.remove(expensesVm.list.indexOf(expense))"></div>
+                        </div>
+                    </div>
+                    <div class="row type-total">
+                        <div class="col-md-6 col-xs-6">Total</div>
+                        <div class="col-md-3 col-xs-3">{{ expensesVm.total(typesList.name) }}</div>
+                        <div class="col-md-3 col-xs-3"></div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row total">
+                <div class="col-md-6 col-xs-6">Total</div>
+                <div class="col-md-3 col-xs-3">{{ expensesVm.total('') }}</div>
+                <div class="col-md-3 col-xs-3"></div>
+            </div>
+        </div>
+    </body>
+</html>
