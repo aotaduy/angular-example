@@ -44,14 +44,17 @@
         // Calculate expense total.
         function total(type) {
           var sum = 0;
+
           var list = vm.list;
           if (type !== '') {
             // filter by expense type
             list = $filter('filter')(vm.list, { type: type });
           }
+
           angular.forEach(list, function(expense, key) {
             sum += expense.amount;
           });
+
           return sum;
         }
     }
