@@ -21,6 +21,8 @@ function createRouteConfigs(app) {
   routeConfigs.search = search;
   routeConfigs.configuration = configuration;
   routeConfigs.nowPlaying = nowPlaying;
+  routeConfigs.review = review;
+
 
     function configuration(req, res){
       app.db.findOne({configuration: 1}, function (err, result) {
@@ -83,6 +85,17 @@ function createRouteConfigs(app) {
               res.json(movies);
           });
         }
+      });
+    }
+
+    function review(req, res) {
+    app.db.findOne({movieId: req.params.movieId}, function (err, result) {
+          if (result) {
+            res.json(req.body);
+          } else{
+            res.status(404);
+            res.send( '404');
+          }
       });
     }
     return routeConfigs;
