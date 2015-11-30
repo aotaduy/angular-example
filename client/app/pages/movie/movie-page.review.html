@@ -1,19 +1,24 @@
 <h2>Review</h2>
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6 well">
         <form>
             <div class="form-group">
-                <input type="text" class="form-control" ng-model="" placeholder="Name" />
+                <input type="text" class="form-control" ng-model="movieVm.user.name" placeholder="Name" />
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" ng-model="" placeholder="Lastname" />
+                <input type="text" class="form-control" ng-model="movieVm.user.lastname" placeholder="Lastname" />
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" ng-model="" placeholder="Email" />
+                <input type="text" class="form-control" ng-model="movieVm.user.email" placeholder="Email" />
             </div>
             <div class="form-group">
-                <uib-rating ng-model="rate" max="10"></uib-rating>
+                <textarea class="form-control" ng-model="movieVm.review.comment" placeholder="Comment"></textarea>
             </div>
+            <div class="form-group">
+                <label>Rating</label>
+                <uib-rating ng-model="movieVm.review.rate" max="10"></uib-rating>
+            </div>
+            <button class="btn btn-primary pull-right" ng-click="movieVm.addReview()">Create Review</button>
         </form>
     </div>
 </div>

@@ -21,7 +21,8 @@
             topRatedMovies: topRatedMovies,
             configuration: configuration,
             search: search,
-            movieInfo: movieInfo
+            movieInfo: movieInfo,
+            reviewAdd: reviewAdd
         };
 
         function topRatedMovies() {
@@ -42,6 +43,10 @@
                 service.cachedConfiguration = response;
                 return response;
             });
+        }
+
+        function reviewAdd(data){
+            return $http.post('/api/movies/review/', data)
         }
 
         return service;
