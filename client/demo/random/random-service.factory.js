@@ -22,7 +22,8 @@
             getRandomArray: getRandomArray,
             getLocal: getLocal
 
-        };
+        };       
+        
 
         return service;
 

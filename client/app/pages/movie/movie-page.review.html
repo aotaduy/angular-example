@@ -1,0 +1,113 @@
+
+<h3>Write your Review </h3>
+<h4 ng-class="{'text-danger': movieVm.success==false,'text-success': movieVm.success==true}" ng-show="movieVm.message">{{movieVm.message}}</h4>
+<div class="row">
+	<form name="reviewForm" ng-submit="movieVm.submit(movieVm.movieRating, movieVm.comment, movieVm.name, movieVm.lastName, movieVm.email)">
+		<div class="control-group" >
+			<div>
+				<div style="float: left;width: 30px;">
+					<h4>Rate: <h4>
+				</div>
+				<div style="margin-left: 60px;">
+					<fieldset name="stars" class="rating" ng-model="movieVm.movieRating"
+					ng-class="{invalid: movieVm.submitted && movieVm.movieRating==0}">
+						<input type="radio" id="star10" name="rating" value="10" ng-click="movieVm.changeRating(10)"/><label for="star10"></label>
+					    <input type="radio" id="star9" name="rating" value="9" ng-click="movieVm.changeRating(9)"/><label for="star9"></label>
+					    <input type="radio" id="star8" name="rating" value="8" ng-click="movieVm.changeRating(8)"/><label for="star8"></label>
+					    <input type="radio" id="star7" name="rating" value="7" ng-click="movieVm.changeRating(7)"/><label for="star7"></label>
+					    <input type="radio" id="star6" name="rating" value="6" ng-click="movieVm.changeRating(6)"/><label for="star6"></label>
+					    <input type="radio" id="star5" name="rating" value="5" ng-click="movieVm.changeRating(5)"/><label for="star5"></label>
+					    <input type="radio" id="star4" name="rating" value="4" ng-click="movieVm.changeRating(4)"/><label for="star4"></label>
+					    <input type="radio" id="star3" name="rating" value="3" ng-click="movieVm.changeRating(3)"/><label for="star3"></label>
+					    <input type="radio" id="star2" name="rating" value="2" ng-click="movieVm.changeRating(2)"/><label for="star2"></label>
+					    <input type="radio" id="star1" name="rating" value="1" ng-click="movieVm.changeRating(1)"/><label for="star1"></label>
+					</fieldset>
+				</div>
+				<div style="clear: both"></div>
+				<br/>
+			</div>
+			<div>
+				<h4>Comment: </h4>
+				<textarea name="comment" ng-model="movieVm.comment" cols="80" rows="5" required
+				ng-class="{invalid: movieVm.submitted && reviewForm.comment.$error.required}">
+				</textarea>
+			</div>
+			<div>
+				<h4>Your Name: </h4>
+				<input type="text" name="name" ng-model="movieVm.name" required
+				ng-class="{invalid: movieVm.submitted && reviewForm.name.$error.required}">
+			</div>
+			<div>
+				<h4>Your Last Name: </h4>
+				<input type="text" name="lastName" ng-model="movieVm.lastName" required
+				ng-class="{invalid: movieVm.submitted && reviewForm.lastName.$error.required}">
+			</div>
+			<div>
+				<h4>Your Email: </h4>
+					<input type="email" name="email" ng-model="movieVm.email" required
+					ng-class="{invalid: movieVm.submitted && (reviewForm.email.$error.required || reviewForm.email.$error.email)}">
+			</div>
+			<br />
+			<div>
+				<button type="submit" class="btn btn-primary" ng-click="movieVm.submitted=true;">Submit</button>
+				<!--<input type="button" class="btn btn-primary" value="Save" id="add-button" ng-click="movieVm.submit()" > -->
+			</div>
+		</div>
+	</form>
+</div>
+<style>
+    .invalid{
+        border: 1px solid red;
+    }
+    .rating {
+    float:left;
+	}
+	.rating:not(:checked) > input {
+	    position:absolute;
+	    top:-9999px;
+	    clip:rect(0,0,0,0);
+	}
+
+	.rating:not(:checked) > label {
+	    float:right;
+	    width:1em;
+	    padding:0 .1em;
+	    overflow:hidden;
+	    white-space:nowrap;
+	    cursor:pointer;
+	    font-size:200%;
+	    line-height:1.2;
+	    color:#ddd;
+	    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+	}
+
+	.rating:not(:checked) > label:before {
+	    content: '★ ';
+	}
+
+	.rating > input:checked ~ label {
+	    color: #f70;
+	    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+	}
+
+	.rating:not(:checked) > label:hover,
+	.rating:not(:checked) > label:hover ~ label {
+	    color: gold;
+	    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+	}
+
+	.rating > input:checked + label:hover,
+	.rating > input:checked + label:hover ~ label,
+	.rating > input:checked ~ label:hover,
+	.rating > input:checked ~ label:hover ~ label,
+	.rating > label:hover ~ input:checked ~ label {
+	    color: #ea0;
+	    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+	}
+
+	.rating > label:active {
+	    position:relative;
+	    top:2px;
+	    left:2px;
+	}
+</style>

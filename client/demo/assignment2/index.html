@@ -6,7 +6,7 @@
         <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrapcustom.css">        
         <!-- Include file with the controller-->
-        <script src="/demo/expenses/expenses.controller.js"></script>
+        <script src="/demo/assignment2/expenses-with-controller.controller.js"></script>
     </head>
     <body ng-app="ExpensesDemo">
         <div class="container" ng-controller="ExpensesController as expenseVm">  
@@ -79,6 +79,7 @@
                                 <thead>
                                     <tr>
                                         <th> </th>
+                                        <th> </th>
                                         <th>Date</th>
                                         <th>Type</th>
                                         <th>Description</th>
@@ -88,12 +89,30 @@
                                 <tbody>                                     
                                         <tr ng-repeat="expense in expenseVm.expenseList track by $index">  
                                             <td data-title=" ">
-                                                <input class="btn btn-default btn-xs" type="button" value="X" ng-click="expenseVm.remove($index)">
+                                                <div ng-hide="expenseVm.editingData[$index]">
+                                                    <input class="btn btn-default btn-xs" id="remove-button" type="button" value="X" ng-click="expenseVm.remove($index)">
+                                                </div>
+                                                <div ng-show="expenseVm.editingData[$index]">
+                                                    <input class="btn btn-default btn-xs" type="button" id="save-button" value="Save" ng-click="expenseVm.save($index,expense.newValue,expense.expensetype)">
+                                                </div>
+                                            </td>  
+                                            <td data-title=" ">
+                                                <div ng-hide="expenseVm.editingData[$index]">
+                                                    <input class="btn btn-default btn-xs" type="button" value="Edit" ng-click="expenseVm.edit($index)" id="edit-button">
+                                                </div>
+                                                <div ng-show="expenseVm.editingData[$index]">
+                                                    <input class="btn btn-default btn-xs" type="button" value="Cancel" ng-click="expenseVm.cancel($index)">
+                                                </div>
                                             </td>                                          
                                             <td data-title="Date">{{expense.date}}</td>
                                             <td data-title="Type">{{expense.expensetype}}</td>
                                             <td data-title="Description">{{expense.description}}</td>
-                                            <td data-title="Amount">{{expense.amount}}</td>
+                                            <td data-title="Amount">
+                                                <div ng-hide="expenseVm.editingData[$index]">{{expense.amount}}</div>
+                                                <div ng-show="expenseVm.editingData[$index]">
+                                                    <input type="number" step="0.01" ng-model="expense.newValue"/>
+                                                </div>
+                                            </td>
                                         </tr>
                                     
                                 </tbody>

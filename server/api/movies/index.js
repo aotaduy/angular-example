@@ -16,6 +16,9 @@ function createRouter(app) {
         router.get('/configuration', controller.configuration);
         router.get('/playing', controller.nowPlaying);
         router.get('/search/:query', controller.search);
+        router.get('/visited', controller.lastVisited);
+
+
     }
     return router;
 }

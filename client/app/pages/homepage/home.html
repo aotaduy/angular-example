@@ -5,4 +5,39 @@
   <p>Reward your friends with a movie</p>
   <p><a class="btn btn-primary btn-lg" href="/list/" role="button">Learn More</a></p>
 </div>
+<div class="row">
+    <h2>Popular Movies</h2>
+    <!--<top-listing movies="homeVm.movies"></top-listing>-->
+
+    <div ng-repeat="movie in homeVm.movies track by $index">
+		<div style="float: left;width: 130px;">
+			<movie-poster movie="movie"></movie-poster>
+			<a href="/movie/{{movie.id}}" class="btn btn-primary btn-xs" role="button">Read more</a>
+		</div>
+		<div style="margin-left: 200px;">
+			<h2>{{movie.title}}</h2>
+			<span>{{movie.overview}}</span>
+			<br />
+			<h3>Similar Movies</h3>
+			<div ng-repeat="similar in homeVm.similarMovies[$index].similar.results | limitTo: 5" style="display:inline;">
+				<a href="/movie/{{similar.id}}" >
+					<movie-poster movie="similar" style="display:inline !important;"></movie-poster>
+				</a>
+			</div>
+		</div>
+		<div style="clear: both"></div>
+		<br/>
+	</div>
+</div>
+<div class="row">
+    <h2>Last Searches</h2>
+    <ol>
+    	<li ng-repeat = "search in homeVm.lastSearches | orderBy: 'id'">
+    		<span> {{ search.type =='info'?'Movie ':'Search'}} : 
+    			<a ng-if="search.type =='info'" href="/movie/{{search.text}}"> {{ search.result }}</a> 
+    			<a ng-if="search.type =='search'" href="/search/{{search.text}}"> {{ search.text }}</a> 
+    		</span>
+    	</li>    		
+    </ol>
+</div>
 <home-footer></home-footer>

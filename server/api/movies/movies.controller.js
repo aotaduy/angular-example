@@ -21,6 +21,7 @@ function createRouteConfigs(app) {
   routeConfigs.search = search;
   routeConfigs.configuration = configuration;
   routeConfigs.nowPlaying = nowPlaying;
+  routeConfigs.lastVisited = lastVisited;
 
     function configuration(req, res){
       app.db.findOne({configuration: 1}, function (err, result) {
@@ -67,6 +68,14 @@ function createRouteConfigs(app) {
     }
 
     function nowPlaying(req, res) {
+        MovieDB.miscPopularMovies(function(err, movies){
+            res.json(movies);
+        });
+
+    }
+
+
+    function lastVisited(req, res) {
         MovieDB.miscPopularMovies(function(err, movies){
             res.json(movies);
         });

@@ -33,7 +33,7 @@
                         topMovies: ['moviesConnector', function( moviesConnector) {
                             return moviesConnector.topRatedMovies();
                         }
-                        ]
+                        ],                        
                     }
                 });
         }

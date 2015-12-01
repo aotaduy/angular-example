@@ -26,7 +26,7 @@
                         configuration: ['moviesConnector', function(moviesConnector) {
                         return moviesConnector.configuration();
                         }
-                        ]
+                        ],                        
                     }
                 });
         }

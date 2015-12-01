@@ -1,0 +1,147 @@
+<html ng-app>
+    <head>
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrapcustom.css">             
+    </head>
+    <body>
+        <div class="container" ng-init="expenseList=[];editingData=[];totalAmount=0;
+        expenseTypes = [{expense:'Food', amount:0},{expense:'Transportation', amount:0},
+                    {expense:'Lodging', amount:0},{expense:'Financial', amount:0},{expense:'Sales', amount:0},{expense:'Other', amount:0}];">  
+        <div class="clearfix"> 
+            <div class="left">
+                <form class="bootstrap-frm" id="myform">    
+                    <div class="row">
+                        <h1>Enter New Expense
+                            <span>Please fill in all the fields</span>
+                        </h1>
+
+                        <label>
+                            <span>Date :</span>
+                            <input type="text" id="calendar" ng-model="expenseDate">
+                        </label> 
+                        <label>
+                            <span>Type :</span>
+                            <select id="etype" name="type" ng-model="expenseType">
+                                <option value="" disabled selected>Select Expense Type</option>
+                                <option value="0">Food</option>
+                                <option value="1">Transportation</option>
+                                <option value="2">Lodging</option>
+                                <option value="3">Financial</option>
+                                <option value="4">Sales</option>
+                                <option value="5">Other</option>
+                            </select>
+                        </label>  
+                        <label>
+                            <span>Description :</span>
+                            <textarea id="description" placeholder="Write Expense Description" ng-model="expenseDescription" ></textarea>
+                        </label>      
+                        <label>
+                            <span>Amount :</span>
+                            <input id="input" type="number" step="0.01" placeholder="0" ng-model="expenseAmount">
+                        </label> 
+                        <label>  
+                            <span>&nbsp;</span> 
+                            <input type="button" class="button" value="Save" id="add-button"
+                            ng-click="expenseList.push({date:expenseDate,expensetype: expenseType, description: expenseDescription, amount: expenseAmount});totalAmount=totalAmount+expenseAmount;
+                            editingData.push(false);expenseTypes[expenseType].amount=expenseTypes[expenseType].amount+expenseAmount;expenseDate = '';expenseDescription = '';expenseType = '';expenseAmount='';"> 
+                        </label>           
+                    </div>
+                </form>
+            </div>
+            <div class="right">
+                <form class="bootstrap-frm">    
+                    <div class="row">
+                        <h1>Expenses Total
+                        </h1>
+
+                        <label>
+                            <h2>TOTAL AMOUNT OF EXPENSES: <span id="expensestotal">$ {{totalAmount}}<span></h2>
+                        </label> 
+
+                        <div ng-repeat="item in expenseTypes" class="col-xs-12">
+                            <h2 class="{{item.expense}}" ng-show="item.amount>0">                                
+                                {{item.expense}}: $ {{item.amount}}                              
+                            </h2>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+
+            <div class="right">
+                <form class="bootstrap-frm">    
+                    <div class="row">
+                        <h1>Expenses Detail
+                        </h1>
+                        <div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th> </th>
+                                        <th> </th>
+                                        <th>Date</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                        <th>Amount ($)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>                                     
+                                        <tr ng-repeat="expense in expenseList track by $index">  
+                                            <td data-title=" ">
+                                                <div ng-hide="$parent.editingData[$index]">
+                                                    <input class="btn btn-default btn-xs" type="button" value="X" 
+                                                    id="remove-button"
+                                                    ng-click="$parent.totalAmount=$parent.totalAmount-expense.amount;
+                                                    $parent.expenseTypes[expense.expensetype].amount=$parent.expenseTypes[expense.expensetype].amount-expense.amount;expenseList.splice(index,1);">
+                                                </div>
+                                                <div ng-show="$parent.editingData[$index]">
+                                                    <input class="btn btn-default btn-xs" type="button" id="save-button" value="Save" 
+                                                    ng-click="$parent.totalAmount=$parent.totalAmount-expense.amount+expense.newValue;$parent.expenseTypes[expense.expensetype].amount=$parent.expenseTypes[expense.expensetype].amount-expense.amount+expense.newValue;$parent.editingData[$index]=false">
+                                                </div>
+                                            </td>  
+                                            <td data-title=" ">
+                                                <div ng-hide="$parent.editingData[$index]">
+                                                    <input class="btn btn-default btn-xs" type="button" value="Edit" id="edit-button"
+                                                    ng-click="$parent.editingData[$index]=true;expense.newValue=expense.amount">
+                                                </div>
+                                                <div ng-show="$parent.editingData[$index]">
+                                                    <input class="btn btn-default btn-xs" type="button" value="Cancel" 
+                                                    ng-click="$parent.editingData[$index]=false";>
+                                                </div>
+                                            </td>                                          
+                                            <td data-title="Date">{{expense.expenseDate}}</td>
+                                            <td data-title="Type"> {{expense.expensetype == 0 ? "Food" : 
+                                                    (expense.expensetype == 1 ? "Transportation" : 
+                                                        (expense.expensetype == 2 ? "Lodging" : 
+                                                        (expense.expensetype == 3 ? "Financial" : 
+                                                        (expense.expensetype == 4 ? "Sales" : "Other"
+                                                        ))))
+                                                    }}</td>
+                                            <td data-title="Description">
+                                                {{expense.description}}
+                                            </td>
+                                            <td data-title="Amount">
+                                                <div ng-hide="$parent.editingData[$index]">{{expense.amount}}</div>
+                                                <div ng-show="$parent.editingData[$index]">
+                                                    <input type="number" step="0.01" ng-model="expense.newValue"/>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    
+                                </tbody>
+                            </div>                            
+                                         
+                        </div>
+                        
+                        </div>                        
+                    </div>
+                </form>
+            </div>
+        </div>           
+        </div>
+    </body>
+
+</html>

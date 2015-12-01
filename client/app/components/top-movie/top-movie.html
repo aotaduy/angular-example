@@ -1,0 +1,14 @@
+<div>
+	<div style="float: left;width: 130px;">
+		<movie-poster movie="movie"></movie-poster>
+		<a href="/movie/{{movie.id}}" class="btn btn-primary btn-xs" role="button">Read more</a>
+	</div>
+	<div style="margin-left: 200px;">
+		<h2>{{movie.title}}</h2>
+		<span>{{movie.overview}}</span>
+		<br />
+		<a ui-sref="home.similar"><label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Similar'">Similar Movies</label></a>
+		<ui-view></ui-view>
+	</div>
+	<div style="clear: both"></div>
+</div>
