@@ -17,24 +17,40 @@
         vm.user = {};
         vm.review = {};
 
-        vm.addReview = function(){
-            var data = {};
-            data.user = vm.user;
-            data.movieId = vm.movie.id;
-            data.rating = vm.review.rate;
-            data.comment = vm.review.comment;
+        vm.msg = null;
 
-            console.debug(data);
+        vm.addReview = function(isValid){
 
-            moviesConnector.reviewAdd(data)
-                .then(function(){
-                    console.debug('success');
-                })
-                .catch(function(response){
-                    console.debug('error');
-                });
+            vm.submitted = true;
 
-        }
+            if (isValid) {
+
+                var data = {};
+                data.user = vm.user;
+                data.movieId = vm.movie.id;
+                data.rating = vm.review.rate;
+                data.comment = vm.review.comment;
+
+                console.debug(data);
+
+                moviesConnector.reviewAdd(data)
+                    .then(function () {
+                        vm.msg = 'Your review has been saved successfully';
+                        console.debug('success');
+                    })
+                    .catch(function (response) {
+                        vm.msg = 'There was an error submiting your review';
+                        console.debug('error');
+                    });
+            }
+        };
+
+        vm.back = function(){
+            vm.msg = null;
+            vm.user = {};
+            vm.review = {};
+            vm.review = {};
+        };
 
     }
 })();
