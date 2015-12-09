@@ -32,6 +32,7 @@
 
         function search(query) {			
 			
+			
 			var index = queryIsCached(query);
 			
 			if(index == -1){
