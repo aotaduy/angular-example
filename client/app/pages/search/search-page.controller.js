@@ -25,7 +25,8 @@
 
 
         function updatedSearch(query) {
-            moviesConnector.search(query).then(function (response) {
+			var searchPromise = moviesConnector.search(query);
+            searchPromise.then(function (response) {
                 vm.movies = response.data.results;
                 angular.forEach(vm.movies, function (each) {
                     if (vm.topMovieNames.indexOf(each) === -1){

@@ -1,12 +1,14 @@
 <html >
     <head>
-        <script src="/bower_components/jquery/dist/jquery.js"></script>
+	
+	    <script src="/bower_components/jquery/dist/jquery.js"></script>
         <script src="/bower_components/angular/angular.js"></script>
         <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>		
+        <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>		                
 		<script type="text/javascript" src="/bower_components/jquery-ui/jquery-ui.js"></script>
 		<script type="text/javascript" src="/bower_components/angular/angular.js"></script>
-		<script type="text/javascript" src="/bower_components/angular-ui-date/src/date.js"></script>
+		<script type="text/javascript" src="/bower_components/angular-ui-date/src/date.js"></script>		
+		
         <script src="/demo/expenses/expenses-controller.js"></script>
 		
 		<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
@@ -83,7 +85,7 @@
 								<input class="btn btn-default btn-xs" type="button" value="Delete" ng-click="expVM.remove($index)">
 							</div>
 							<div ng-show="item.editing == true">
-								<input class="btn btn-default btn-xs" type="button" value="Save" ng-click="expVM.edit($index)">
+								<input class="btn btn-default btn-xs" type="button" value="Save" ng-click="expVM.save($index)">
 								<input class="btn btn-default btn-xs" type="button" value="Cancel" ng-click="expVM.cancel($index)">
 							</div>
 						</td>
@@ -95,7 +97,7 @@
 				<table ng-repeat="item in expVM.listTotal" class="col-xs-12">
 					<tr ng-show="item.total > 0">
 						<td>
-							{{item.type}} : {{item.total}}
+							{{item.type}} : {{item.total | currency}}
 						</td>
 					</tr>                   
 				</table>	

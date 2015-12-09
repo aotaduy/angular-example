@@ -19,12 +19,15 @@
 		vm.types = ["food","transportation","lodging","financial","other"];
 		vm.list = [];
 		vm.listTotal = []; 
-		vm.oldAmount = 0;
+		
+		vm.currentAmount = 0;
+
 
         // Controller methods
         vm.add = add;
         vm.remove = remove;
 		vm.edit = edit;
+		vm.save = save;
 		vm.cancel = cancel;
 
         /* Adds an item to the todo list */
@@ -40,28 +43,33 @@
 			calculateTotals();					      
         }
 		
+		/* Save changes when we edit a item*/
+        function save(indexList){						
+			vm.list[indexList].editing = false;
+			calculateTotals();							     
+        }
+		
+		
 		/* Edit a item from expenses list */
 		function edit(indexList) {										
+			vm.currentAmount = vm.list[indexList].amount;
 			
-			vm.oldAmount = vm.list[indexList].amount;
-			
-			var isEditing = vm.list[indexList].editing;
-			
-			if(isEditing){
-				vm.list[indexList].editing = false;
-				calculateTotals();
-				
-			}else{
-				vm.list[indexList].editing = true;
-			}					
+			disableAllEditingItem();			
+			vm.list[indexList].editing = true;							
         }
 		
 		function cancel(indexList) {										
 			vm.list[indexList].editing = false;	
-			vm.list[indexList].amount = vm.oldAmount;			
+			vm.list[indexList].amount = vm.currentAmount;			
 			calculateTotals();
         }
-
+		
+		function disableAllEditingItem(){
+			for(var i = 0, len = vm.list.length; i < len; i++){
+				vm.list[i].editing = false;
+			}
+		}
+		
 		/* Clean form test */
 		function cleanForm()
 		{		        
