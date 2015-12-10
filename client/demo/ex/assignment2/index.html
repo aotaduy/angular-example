@@ -1,0 +1,112 @@
+<html ng-app="expensesApp">
+    <head>
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+
+        <!-- AngularJS App -->
+        <script src="app.js"></script>
+        <script src="expensesController.js"></script>
+
+        <title>Expense App Assignment2</title>
+    </head>
+    <body ng-controller="ExpenseController as exp">
+        <div class="container">
+            <h1>Expenses</h1>
+            <div class="create_expense well well-lg">
+                <form name="expenseForm">
+                    <h4>Create Expense</h4>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="text" hidden ng-model="exp.expense.id" />
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Date" ng-model="exp.expense.date" />
+                            </div>
+                            <div class="form-group">
+                                <select id="type" name="type" class="form-control" ng-model="exp.expense.type" ng-options="option for option in exp.types track by option">
+                                    <option value="">-- Select type --</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Description" ng-model="exp.expense.description" />
+                            </div>
+                            <div class="form-group">
+                                <input type="number" class="form-control" placeholder="Amount" ng-model="exp.expense.amount" />
+                            </div>
+                            <div>
+                                <input type="button" id="create-button" value="Create" class="btn btn-primary" ng-click="exp.newExpense()" ng-hide="exp.isEditing">
+                                <input type="button" id="update-button" value="Update" class="btn btn-primary" ng-click="exp.update(exp.expense)" ng-show="exp.isEditing">
+                                <input type="button" id="cancel-button" value="Cancel" class="btn btn-primary" ng-click="exp.cancel()" ng-show="exp.isEditing">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <hr>
+            <div class="display_expenses">
+                <table class="table items">
+                    <thead>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="expen in exp.expenses track by expen.id">
+                           <td>{{ expen.date | date: 'MM/dd/yy'}}</td>
+                           <td>{{ expen.type }}</td>
+                           <td>{{ expen.description }}</td>
+                           <td>{{ expen.amount }}</td>
+                           <td>
+                                <button class="btn btn-default edit-expense" ng-click="exp.edit(expen)">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </button>
+                                <button class="btn btn-default delete-expense" ng-click="exp.delete(expen)">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                           </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+                <div class="row">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Totals by Type
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <table class="table" id="totals_table">
+                                    <thead>
+                                        <th>Type</th>
+                                        <th>Total</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="type in exp.types" ng-if="exp.getTotalByType(type) > 0" ng-style="exp.setColor(type)">
+                                            <td>{{ type }}</td>
+                                            <td>{{ exp.getTotalByType(type) }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Total All Types
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <p class="text-center">Total: <strong>{{ exp.getTotal() }}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

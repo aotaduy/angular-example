@@ -1,0 +1,35 @@
+<h2>Review</h2>
+<div class="well well-sm alert-info" ng-if="movieVm.msg">
+    <div>{{ movieVm.msg }}</div>
+    <div>
+        <button class="btn btn-default" ng-click="movieVm.back()">Back</button>
+    </div>
+</div>
+<div class="row" ng-if="!movieVm.msg">
+    <div class="col-sm-6 well">
+        <form name="reviewForm" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' : reviewForm.name.$invalid && !reviewForm.name.$pristine && movieVm.submitted }">
+                <input type="text" name="name" class="form-control" ng-model="movieVm.user.name" placeholder="Name" ng-minlength="3" required/>
+                <p ng-show="reviewForm.name.$invalid && !reviewForm.name.$pristine && movieVm.submitted" class="help-block">You name is required.</p>
+            </div>
+            <div class="form-group">
+                <input type="text" name="lastname" class="form-control" ng-model="movieVm.user.lastname" placeholder="Lastname" ng-minlength="3" required/>
+                <p ng-show="reviewForm.lastname.$invalid && !reviewForm.lastname.$pristine && movieVm.submitted" class="help-block">You lastname is required.</p>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" class="form-control" ng-model="movieVm.user.email" placeholder="Email" ng-minlength="3" required/>
+                <p ng-show="reviewForm.email.$invalid && !reviewForm.email.$pristine && movieVm.submitted" class="help-block">Enter a valid email.</p>
+            </div>
+            <div class="form-group">
+                <textarea name="comment" class="form-control" ng-model="movieVm.review.comment" placeholder="Comment" ng-minlength="10" required></textarea>
+                <p ng-show="reviewForm.comment.$invalid && !reviewForm.comment.$pristine && movieVm.submitted" class="help-block">You comment is required.</p>
+            </div>
+            <div class="form-group">
+                <label>Rating</label>
+                <uib-rating name="rate" ng-model="movieVm.review.rate" max="10" required></uib-rating>
+                <p ng-show="reviewForm.rate.$invalid && !reviewForm.rate.$pristine && movieVm.submitted" class="help-block">You rate is required.</p>
+            </div>
+            <button type="submit" class="btn btn-primary pull-right" ng-click="movieVm.addReview(reviewForm.$valid)">Create Review</button>
+        </form>
+    </div>
+</div>
