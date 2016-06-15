@@ -29,7 +29,8 @@
 
     <!-- Add your site or application content here -->
     <div ng-include="'app/components/navbar/navbar.html'"></div>
-
+    <cart-bar>
+    </cart-bar>
 
 
 <div class="container">
@@ -69,6 +70,11 @@
 
         <script src="app/app.js"></script>
           <!-- injector:js -->
+          <script src="app/components/add-to-cart/add-to-cart.directive.js"></script>
+          <script src="app/components/cart-bar/cart-bar.directive.js"></script>
+          <script src="app/components/cart-factory/cart.factory.js"></script>
+          <script src="app/components/cart-factory/cart.module.js"></script>
+          <script src="app/components/cart/cart.factory.js"></script>
           <script src="app/components/filters/common-filters.module.js"></script>
           <script src="app/components/filters/common-filters.words.filter.js"></script>
           <script src="app/components/movie-listing/movie-listing.directive.js"></script>

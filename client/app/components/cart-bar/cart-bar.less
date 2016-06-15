@@ -1,0 +1,32 @@
+.car-bar-container {
+    display: block;
+    position: fixed;
+
+    right: 10px;
+    top: 51px;
+    z-index: 99999;
+
+    &.active {
+        border-left: 1px solid #cbcbcb;
+        border-right: 1px solid #cbcbcb;
+        border-bottom: 1px solid #cbcbcb;
+        border-bottom-left-radius: 4px !important;
+        border-bottom-right-radius: 4px !important;
+    }
+    .cart-button {
+        button {
+            border-radius: 0 !important;
+            border-bottom-left-radius: 4px !important;
+            border-bottom-right-radius: 4px !important;
+        }
+    }
+    .cart-details {
+        transform: scaleY(0);
+        transition: transform .5s;
+        background: white;
+        transform-origin: top;
+        &.show {
+            transform: scaleY(1);
+        }
+    }
+}

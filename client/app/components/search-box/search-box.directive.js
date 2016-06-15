@@ -9,7 +9,7 @@
             restrict: 'E',
             templateUrl: 'app/components/search-box/search-box.html',
             scope: {
-                query: '=',
+                query: '=?',
                 autocomplete: '=',
                 searchCallback: '='
             },

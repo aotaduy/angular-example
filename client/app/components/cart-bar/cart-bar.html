@@ -1,0 +1,22 @@
+<div class="car-bar-container" ng-class="{'active':cartBarVm.show}">
+    <div class="cart-button col-xs-12" >
+        <button type="button" class="btn btn-success principal pull-right" ng-click="cartBarVm.show = !cartBarVm.show" ng-hide="addToCartVm.check()">
+            CART <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+        </button>
+    </div>
+    <div class="cart-details col-xs-12"  ng-class="{'show':cartBarVm.show}">
+        <h3 class="col-xs-12">You have {{cartBarVm.quantity}} Items</h3>
+        <div class="movie-list">
+            <div class="movie-list-prev" ng-repeat="item in cartBarVm.list">
+                <div class="img">
+                </div>
+                <div class="description">
+                    <div class="name">{{item.movie.title}}</div>
+                </div>
+                <duv class="quantity">
+                    {{item.quantity}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

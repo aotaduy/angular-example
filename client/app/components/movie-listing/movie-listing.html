@@ -1,3 +1,5 @@
-<div ng-repeat="movie in movies" class="col-sm-4 col-md-3 col-lg-2 col-xs-6">
-<movie movie="movie"></movie>
+<div ng-repeat="movie in movies" class="col-sm-4 col-md-3 col-lg-2 col-xs-6 movie-prev">
+    <movie movie="movie"></movie>
+    <add-to-cart movie="movie">
+    </add-to-cart>
 </div>

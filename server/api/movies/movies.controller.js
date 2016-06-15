@@ -9,9 +9,9 @@
 
 'use strict';
 
- 
+
 var _ = require('lodash'),
-    MovieDB = require('moviedb')(process.env.MOVIEDB_API);
+    MovieDB = require('moviedb')('ad168782b78fde75ebc21c3c99688215');
 
 // Get list of things
 function createRouteConfigs(app) {
@@ -48,7 +48,7 @@ function createRouteConfigs(app) {
               app.db.insert({movieId: req.params.movieId, movie: response});
               res.json(response);
             })
-            
+
         });
       }
     });
@@ -62,10 +62,10 @@ function createRouteConfigs(app) {
             MovieDB.searchMovie({query: req.params.query}, function(err, response){
                 app.db.insert({searchQuery: req.params.query, searchResults: response});
                 res.json(response);
-            });    
+            });
           }
         })
-        
+
     }
 
     function nowPlaying(req, res) {
