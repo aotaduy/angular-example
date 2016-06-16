@@ -3,5 +3,13 @@ movie-poster {
     .poster {
         width: 154px;
         height: 231px;
+
+        @media (max-width: 400px) {
+            max-width: 154px;
+            max-height: 231px;
+            width: auto;
+            height: auto;
+            width: 100%;
+        }
     }
 }
