@@ -18,22 +18,37 @@
         };
     }
 
-    cartBarController.$inject=['cartFactory', '$rootScope'];
+    cartBarController.$inject=['cartFactory', '$rootScope', '$timeout'];
 
-    function cartBarController(cartFactory, $rootScope) {
+    function cartBarController(cartFactory, $rootScope, $timeout) {
         var vm = this;
         vm.quantity = 0;
         vm.list = {};
         vm.add = add;
         vm.remove = remove;
-
+        vm.tooltipDel = false;
+        vm.tooltipAdd = false;
         $rootScope.$on('changeCart', generateList);
 
-        function generateList() {
+        function generateList(event, type) {
+
             cartFactory.list().then(function(response) {
-                 vm.list = response;
-                 vm.quantity = cartFactory.length();
+                vm.list = response;
+                vm.quantity = cartFactory.length();
             });
+            if (type === 'add') {
+                vm.tooltipAdd = true;
+                $timeout(function(){
+                    vm.tooltipAdd = false;
+                },1000);
+            }
+
+            if (type === 'remove') {
+                vm.tooltipDel = true;
+                $timeout(function(){
+                    vm.tooltipDel = false;
+                },1000)
+            }
         }
         function add(key) {
             cartFactory.plus(key).then(function(){

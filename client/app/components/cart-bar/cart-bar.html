@@ -4,6 +4,12 @@
             CART <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
         </button>
     </div>
+    <div class="add btn btn-success" ng-show="cartBarVm.tooltipAdd">
+        <span class="glyphicon glyphicon-ok-circle"></span> Movie added correctly
+    </div>
+    <div class="del btn btn-warning" ng-show="cartBarVm.tooltipDel">
+        <span class="glyphicon glyphicon-remove-circle"></span>     Movie removed correctly
+    </div>
     <div class="cart-details col-xs-12"  ng-show="cartBarVm.show">
         <h3 class="col-xs-12">You have {{cartBarVm.quantity}} Items</h3>
         <div class="movie-list">

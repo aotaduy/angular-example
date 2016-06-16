@@ -28,9 +28,7 @@
         vm.check = check;
 
         function add() {
-            cartFactory.add(vm.movie).then(function(){
-                console.log("ya agrego");
-            });
+            cartFactory.add(vm.movie);
         }
 
         function remove() {
