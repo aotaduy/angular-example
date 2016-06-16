@@ -37,7 +37,6 @@
         function minus(key) {
             var quantity = data[key].quantity - 1;
             if (quantity === 0) {
-                console.log("aca", data[key]);
                 remove(data[key].movie);
             } else {
                 data[key].quantity = data[key].quantity - 1;
