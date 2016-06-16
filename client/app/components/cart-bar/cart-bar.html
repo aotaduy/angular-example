@@ -1,20 +1,24 @@
 <div class="car-bar-container" ng-class="{'active':cartBarVm.show}">
-    <div class="cart-button col-xs-12" >
+    <div class="cart-button" >
         <button type="button" class="btn btn-success principal pull-right" ng-click="cartBarVm.show = !cartBarVm.show" ng-hide="addToCartVm.check()">
             CART <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
         </button>
     </div>
-    <div class="cart-details col-xs-12"  ng-class="{'show':cartBarVm.show}">
+    <div class="cart-details col-xs-12"  ng-show="cartBarVm.show">
         <h3 class="col-xs-12">You have {{cartBarVm.quantity}} Items</h3>
         <div class="movie-list">
-            <div class="movie-list-prev" ng-repeat="item in cartBarVm.list">
-                <div class="img">
+            <div class="movie-list-prev row" ng-repeat="(key,item) in cartBarVm.list">
+                <div class="image col-xs-3">
+                    <img ng-src="http://image.tmdb.org/t/p/w154/{{item.movie.poster_path}}" ng-alt="{{item.movie.title}}">
                 </div>
-                <div class="description">
+                <div class="description col-xs-5">
                     <div class="name">{{item.movie.title}}</div>
                 </div>
-                <duv class="quantity">
-                    {{item.quantity}}
+                <duv class="quantity col-xs-4">
+
+                    <span class="glyphicon glyphicon-minus-sign control" ng-click="cartBarVm.remove(key)"></span>
+                    <span class="number">{{item.quantity}}</span>
+                    <span class="glyphicon glyphicon-plus-sign control" ng-click="cartBarVm.add(key)"></span>
                 </div>
             </div>
         </div>

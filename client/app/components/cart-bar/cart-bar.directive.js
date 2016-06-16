@@ -24,14 +24,26 @@
         var vm = this;
         vm.quantity = 0;
         vm.list = {};
+        vm.add = add;
+        vm.remove = remove;
 
-        $rootScope.$on('changeCart', function() {
+        $rootScope.$on('changeCart', generateList);
+
+        function generateList() {
             cartFactory.list().then(function(response) {
                  vm.list = response;
                  vm.quantity = cartFactory.length();
-                 console.log("list aca");
             });
-        });
-
+        }
+        function add(key) {
+            cartFactory.plus(key).then(function(){
+                generateList()
+            });
+        }
+        function remove(key) {
+            cartFactory.minus(key).then(function(){
+                generateList();
+            });
+        }
     }
 })();

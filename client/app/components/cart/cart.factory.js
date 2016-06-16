@@ -23,11 +23,27 @@
             remove: remove,
             list: list,
             check: check,
-            length: length
+            length: length,
+            plus: plus,
+            minus: minus
         };
 
         var data = {};
+        function plus(key) {
+            data[key].quantity = data[key].quantity + 1;
+            return $q.when(true);
+        }
 
+        function minus(key) {
+            var quantity = data[key].quantity - 1;
+            if (quantity === 0) {
+                console.log("aca", data[key]);
+                remove(data[key].movie);
+            } else {
+                data[key].quantity = data[key].quantity - 1;
+            }
+            return $q.when(true);
+        }
         function add(movie) {
             data[movie.id] = {
                 quantity: 1,

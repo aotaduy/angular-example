@@ -1,10 +1,13 @@
 .car-bar-container {
     display: block;
     position: fixed;
-
     right: 10px;
     top: 51px;
     z-index: 99999;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    max-width: 320px;
 
     &.active {
         border-left: 1px solid #cbcbcb;
@@ -12,6 +15,12 @@
         border-bottom: 1px solid #cbcbcb;
         border-bottom-left-radius: 4px !important;
         border-bottom-right-radius: 4px !important;
+        background: white;
+
+        button .glyphicon {
+            transform: rotate(360deg);
+            transition: transform .5s;
+        }
     }
     .cart-button {
         button {
@@ -21,12 +30,43 @@
         }
     }
     .cart-details {
-        transform: scaleY(0);
-        transition: transform .5s;
-        background: white;
+        transform: scaleY(1);
+        transition: transform 1s;
         transform-origin: top;
-        &.show {
-            transform: scaleY(1);
+
+        &.ng-hide {
+            transform: scaleY(0);
+            transition: all .3s;
+        }
+
+    }
+
+    .movie-list-prev {
+        margin-top: 5px;
+        .image {
+            img {
+                width: 100%;
+            }
+        }
+
+        .description {
+            .name {
+                font-size: 14px;
+                font-weight: bold;
+            }
+            .date {
+                font-size: 14px;
+                font-weight: bold;
+                color: #cbcbcb;
+            }
+        }
+
+        .control {
+            cursor: pointer;
+        }
+
+        .number{
+            font-size: 18px;
         }
     }
 }
