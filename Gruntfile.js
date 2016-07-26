@@ -86,7 +86,7 @@ module.exports = function (grunt) {
       less: {
         files: [
           '<%= yeoman.client %>/{app,components}/**/*.less'],
-        tasks: ['less', 'autoprefixer']
+        tasks: ['less']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -184,20 +184,6 @@ module.exports = function (grunt) {
       server: '.tmp'
     },
 
-    // Add vendor prefixed styles
-    autoprefixer: {
-      options: {
-        browsers: ['last 1 version']
-      },
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '.tmp/',
-          src: '{,*/}*.css',
-          dest: '.tmp/'
-        }]
-      }
-    },
 
     // Debugging with node inspector
     'node-inspector': {
@@ -591,7 +577,6 @@ module.exports = function (grunt) {
         'concurrent:server',
         'injector',
         'wiredep',
-        'autoprefixer',
         'concurrent:debug'
       ]);
     }
@@ -603,7 +588,6 @@ module.exports = function (grunt) {
       'concurrent:server',
       'injector',
       'wiredep',
-      'autoprefixer',
       'express:dev',
       'wait',
       'open',
@@ -632,7 +616,6 @@ module.exports = function (grunt) {
         'injector:less',
         'concurrent:test',
         'injector',
-        'autoprefixer',
         'karma'
       ]);
     }
@@ -646,7 +629,6 @@ module.exports = function (grunt) {
         'concurrent:test',
         'injector',
         'wiredep',
-        'autoprefixer',
         'express:dev',
         'protractor'
       ]);
@@ -664,7 +646,6 @@ module.exports = function (grunt) {
         'injector:less',
         'concurrent:test',
         'injector',
-        'autoprefixer',
         'karma',
         'protractor'
     ]);
@@ -676,7 +657,6 @@ module.exports = function (grunt) {
     'injector',
     'wiredep',
     'useminPrepare',
-    'autoprefixer',
     'ngtemplates',
     'concat',
     'ngAnnotate',
