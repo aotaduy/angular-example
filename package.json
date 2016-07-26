@@ -104,7 +104,7 @@
   "scripts": {
     "start": "node server/app.js",
     "test": "grunt test",
-    "postinstall": "grunt setup",
+    "postinstall": "npm run update-webdriver",
     "update-webdriver": "node node_modules/protractor/bin/webdriver-manager update"
   },
   "private": true
