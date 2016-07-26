@@ -29,10 +29,4 @@ describe('Controller: MainCtrl', function () {
       $scope: scope
     });
   }));
-
-  it('should updateNames properly', function () {
-    controller.updatedSearch('star');
-    $httpBackend.flush();
-    expect(controller.topMovieNames.length).to.equal(2);
-  });
 });
