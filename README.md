@@ -10,11 +10,11 @@ Install nvm (Node Version Manager)
 https://github.com/creationix/nvm
 
 ````
-nvm install 0.12
+nvm install 6
 ````
 then before running the app:
 ````
-nvm use 0.12
+nvm use 6
 ````
 
 ## For Windows
@@ -22,16 +22,13 @@ You can use:
 https://github.com/hakobera/nvmw
 and then
 ````
-nvm install 0.12
+nvm install 6
 ````
 the before runn ing the app:
 ````
-nvm use 0.12
+nvm use 6
 ````
 
-or
-
-install node 0.12 https://nodejs.org/download/release/v0.12.7/
 
 I haven't tested with newer versions but it should work anyway.
 
@@ -52,11 +49,11 @@ The movie db example application uses the REST API at https://www.themoviedb.org
 Before running ``grunt serve`` you should set the environment variable (this is a fake key you shuld add your own):
 ````
 In  Windows
-set MOVIEDB_API=72fa50138ba3dcfd588fd59a1375a810
+set MOVIEDB_API=ad168782b78fde75ebc21c3c99688216
 ````
 ````
 In  Linux
-export MOVIEDB_API=72fa50138ba3dcfd588fd59a1375a810
+export MOVIEDB_API=ad168782b78fde75ebc21c3c99688216
 ````
 ## To run the app
 ````
