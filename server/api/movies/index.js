@@ -4,9 +4,10 @@ var express = require('express');
 
 var router = express.Router();
 function createRouter(app) {
+
     if (!process.env.MOVIEDB_API) {
         router.get('/', function(req, res){
-            res.status({status: 404});
+            res.status(404);
             res.json({error: 404})
         });
     } else {
