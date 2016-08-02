@@ -43,6 +43,11 @@ function createRouteConfigs(app) {
             res.json(result.movie)
           } else{
         MovieDB.movieInfo({id: req.params.movieId}, function(err, response){
+          if(!response) {
+            res.status(404);
+            res.send( '404');
+            return
+            }
             MovieDB.movieSimilar({id: req.params.movieId}, function (errSimilar, responseSimilar) {
               response.similar = responseSimilar;
               app.db.insert({movieId: req.params.movieId, movie: response});

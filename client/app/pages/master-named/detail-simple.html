@@ -1,0 +1,12 @@
+<div class="row movie-details"
+      ng-show="detailVm.movie.title">
+      <h4>{{detailVm.movie.title}}</h4>
+
+    <div class="col-sm-8">
+        <p>{{detailVm.movie.overview}}</p>
+    </div>
+
+</div>
+<pre>
+  {{detailVm.movie | json}}
+</pre>

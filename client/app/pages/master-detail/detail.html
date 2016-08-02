@@ -1,0 +1,14 @@
+<div class="row movie-details"
+      ng-show="detailVm.movie.title">
+      <h4>{{detailVm.movie.title}}</h4>
+
+    <div class="col-sm-4">
+        <movie-poster movie="detailVm.movie"></movie-poster>
+        <add-to-cart movie="detailVm.movie"></add-to-cart>
+    </div>
+    <div class="col-sm-8">
+        <p>{{detailVm.movie.overview}}</p>
+        <p>Genres: <a ng-href="#" ng-click="alert('Not implemented yet')" ng-repeat="genre in detailVm.movie.genres">{{genre.name}}</a> </p>
+        <a ng-href="http://www.imdb.com/title/{{detailVm.movie.imdb_id}}">Check in IMDB</a>
+    </div>
+</div>

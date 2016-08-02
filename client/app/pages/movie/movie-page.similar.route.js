@@ -15,6 +15,8 @@
           .state('movie-page.similar', {
                     url:'',
                     templateUrl: 'app/pages/movie/movie-page.similar.html',
+                    controller: 'MoviePageController',
+                    controllerAs: 'movieVm',
                 });
         }
 })();

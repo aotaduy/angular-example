@@ -15,6 +15,8 @@
           .state('movie-page.debug', {
                     url: '/debug',
                     templateUrl: 'app/pages/movie/movie-page.debug.html',
+                    controller: 'MoviePageController',
+                    controllerAs: 'movieVm',
                 });
         }
 })();

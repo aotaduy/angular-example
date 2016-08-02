@@ -21,11 +21,16 @@
             topRatedMovies: topRatedMovies,
             configuration: configuration,
             search: search,
-            movieInfo: movieInfo
+            movieInfo: movieInfo,
+            nowPlaying: nowPlaying
+
         };
 
         function topRatedMovies() {
             return $http.get('/api/movies/');
+        }
+        function nowPlaying() {
+            return $http.get('/api/movies/playing/');
         }
         function movieInfo(movieId) {
             return $http.get('/api/movies/info/' + movieId);

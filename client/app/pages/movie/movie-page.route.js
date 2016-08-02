@@ -20,7 +20,7 @@
                     controller: 'MoviePageController',
                     controllerAs: 'movieVm',
                     resolve: {
-                        movie: ['$stateParams', 'moviesConnector', 
+                        movie: ['$stateParams', 'moviesConnector',
                             function($stateParams, moviesConnector) {
                             if($stateParams.movieId) {
                                 return moviesConnector.movieInfo($stateParams.movieId)
@@ -28,7 +28,7 @@
                                             return response.data;
                                         });
                             } else {
-                                
+
                             }
                         }]
                     }

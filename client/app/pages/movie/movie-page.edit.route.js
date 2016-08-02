@@ -15,6 +15,8 @@
           .state('movie-page.edit', {
                     url: '/edit',
                     templateUrl: 'app/pages/movie/movie-page.edit.html',
+                    controller: 'MoviePageEditController',
+                    controllerAs: 'movieVm',
                 });
         }
 })();

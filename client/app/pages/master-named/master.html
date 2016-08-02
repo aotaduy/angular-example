@@ -1,0 +1,13 @@
+<a ui-sref="masterNamed.detailSimple" class="btn btn-primary">Simple</a>
+<a ui-sref="masterNamed.detailPoster" class="btn btn-primary">Poster</a>
+<div class="row">
+    <div class="col-xs-6 ">
+        <div class="row">
+            <div ui-view="list" class="ui"></div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div ui-view="detail"></div>
+    </div>
+</div>
+<div ui-view="footer"></div>

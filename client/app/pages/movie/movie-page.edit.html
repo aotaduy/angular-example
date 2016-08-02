@@ -7,14 +7,14 @@
 		<textarea  ng-model="movieVm.movie.overview" cols="80" rows="5">
 		</textarea>
 	</div>
-</div>  
+</div>
 <div class="row">
 	<div class="col-xs-12">
 	<h4>Similar Movies </h4>
 	      <span
 	      class="btn btn-default btn-sm"
-	       ng-click="searchVm.itemSelected(result)"
-	       ng-repeat="similarMovie in movieVm.movie.similar.results">
+	       ng-click="movieVm.removeSimilar(similiarId)"
+	       ng-repeat=" (similiarId, similarMovie) in movieVm.movie.similar.results">
 				{{similarMovie.title}} <button class="btn btn-danger btn-xs" ng-click"">X</button>
 	       </span>
   </div>

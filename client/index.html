@@ -13,7 +13,6 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
-      <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -70,6 +69,7 @@
 
         <script src="app/app.js"></script>
           <!-- injector:js -->
+          <script src="app/app.router.run.js"></script>
           <script src="app/components/add-to-cart/add-to-cart.directive.js"></script>
           <script src="app/components/cart-bar/cart-bar.directive.js"></script>
           <script src="app/components/cart/cart.factory.js"></script>
@@ -89,6 +89,16 @@
           <script src="app/pages/homepage/home.route.js"></script>
           <script src="app/pages/listing/listing-page.controller.js"></script>
           <script src="app/pages/listing/listing-page.route.js"></script>
+          <script src="app/pages/master-detail/detail.controller.js"></script>
+          <script src="app/pages/master-detail/detail.route.js"></script>
+          <script src="app/pages/master-detail/master.controller.js"></script>
+          <script src="app/pages/master-detail/master.route.js"></script>
+          <script src="app/pages/master-named/detail-poster.route.js"></script>
+          <script src="app/pages/master-named/detail.controller.js"></script>
+          <script src="app/pages/master-named/detail.route.js"></script>
+          <script src="app/pages/master-named/master.controller.js"></script>
+          <script src="app/pages/master-named/master.route.js"></script>
+          <script src="app/pages/movie/movie-page-edit.controller.js"></script>
           <script src="app/pages/movie/movie-page.controller.js"></script>
           <script src="app/pages/movie/movie-page.debug.route.js"></script>
           <script src="app/pages/movie/movie-page.edit.route.js"></script>
