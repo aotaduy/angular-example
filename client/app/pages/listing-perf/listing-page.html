@@ -1,0 +1,27 @@
+<div class="row">
+    <h2>Popular Movies {{listingVm.movies.length}} Votes: {{listingVm.totalVotes() | number}}</h2>
+    <h2>
+      <button class="btn btn-primary" ng-click="listingVm.reloadList()" name="button">Reload</button>
+      <button class="btn btn-primary" ng-click="listingVm.movies.shift()" name="button">Remove First</button>
+      <button class="btn btn-primary" ng-click="listingVm.onOff()" name="button">On Off</button>
+
+</h2>
+<div class="" ng-show="listingVm.visible">
+
+    <div ng-repeat="movie in listingVm.movies" class="col-sm-4 col-md-3 col-lg-2 col-xs-6 movie-prev">
+        <div class="text-center" ng-if="movie.title[0] == 'S'">
+          {{::movie.title}}
+        </div>
+
+        <movie movie="movie"></movie>
+        <div class="text-center">
+          Average:{{::movie.vote_average | number}}
+          Votes:{{::movie.vote_count | number}}
+
+        </div>
+
+        </div></div>
+      </div>
+
+
+<home-footer></home-footer>

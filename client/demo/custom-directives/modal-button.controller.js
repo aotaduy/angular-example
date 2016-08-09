@@ -15,8 +15,6 @@
         // Controller as viewModel
         var vm = this;
         // Initialization
-     
-
         // Controller methods
         vm.modalClosed = modalClosed
 

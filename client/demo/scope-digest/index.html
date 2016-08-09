@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+        <!-- Include file with the controller -->
+        <script src="/demo/scope-digest/scope-digest.directive.js"></script>
+
+    </head>
+    <body ng-app="scopeDigestDemo" ng-init="testVar = 0">
+      <test-directive></test-directive>
+      <a href="#" ng-click="testVar = testVar +  20" class="btn btn-primary">click</a>
+      {{testVar}}
+
+    </body>
+
+</html>

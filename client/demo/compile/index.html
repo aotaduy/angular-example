@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="/demo/compile/script.js"></script>
+
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div ng-app="compi" class="container">
+
+          <div ng-repeat="index in [0,1,2,3]">
+            <compiled index="{{index}}"></compiled>
+          </div>
+          <compiled index="10">
+          </compiled>
+
+        </div>
+    </body>
+
+</html>
