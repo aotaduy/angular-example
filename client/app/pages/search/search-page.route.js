@@ -38,3 +38,25 @@
                 });
         }
 })();
+
+(function() {
+    'use strict';
+
+    angular
+    .module('moviesApp')
+    .directive('deletable', deleteableElementDirective);
+
+    function deleteableElementDirective() {
+        return {
+            restrict: 'A',
+            compile: function (tElement) {
+                tElement.append('<button ng-click="delete()"><b>X</b></button>');
+                return function (scope, element) {
+                    scope.delete = function () {
+                        element.remove();
+                    };
+                };
+            }
+        };
+    }
+})();

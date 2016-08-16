@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "main": "server/app.js",
   "dependencies": {
+    "basic-auth": "^1.0.4",
     "body-parser": "~1.15.0",
     "composable-middleware": "^0.3.0",
     "compression": "~1.6.1",
@@ -18,7 +19,8 @@
     "nedb": "^1.8.0",
     "phantomjs-prebuilt": "^2.1.7",
     "serve-favicon": "~2.3.0",
-    "serve-index": "^1.7.2"
+    "serve-index": "^1.7.2",
+    "xml": "^1.0.1"
   },
   "devDependencies": {
     "chai": "^3.4.0",

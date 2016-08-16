@@ -7,6 +7,7 @@
     function homeFooterDirective() {
         return {
             restrict: 'E',
+            transclude: true,
             templateUrl: 'app/pages/homepage/footer/footer.html'
         };
     }

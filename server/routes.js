@@ -9,13 +9,20 @@ var path = require('path');
 var express = require('express');
 var serveIndex = require('serve-index')
 var demoDir = path.resolve(__dirname + '/../client/demo/');
-
+var basicAuth = require('./basic-auth')
 module.exports = function(app) {
 
   // Insert routes below
   app.use('/api/things', require('./api/thing'));
   app.use('/api/movies', require('./api/movies')(app));
+  app.use('/api/random/fast', basicAuth );
   app.use('/api/random', require('./api/random'));
+
+  var priv = require('./api/random');
+  priv.use(basicAuth);
+  app.use('/api/random/private', priv );
+
+
   // Serve demo directory
   app.use('/demo/', serveIndex(demoDir, {'icons': true}));
 

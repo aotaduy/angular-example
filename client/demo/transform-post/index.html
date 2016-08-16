@@ -1,0 +1,44 @@
+<html >
+    <head>
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <script src="/bower_components/abdmob/x2js/xml2json.js">
+
+        </script>
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+        <!-- Include file with the controller -->
+        <script src="/demo/transform-post/transform.module.js"></script>
+
+        <script src="/demo/transform-post/transform-service.factory.js"></script>
+        <script src="/demo/transform-post/transform.controller.js"></script>
+        <style>
+            .text-danger {
+            }
+        </style>
+    </head>
+    <body ng-app="randomDemo">
+        <div class="container" ng-controller="RandomController as randomVm">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <span class="navbar-brand">Send Data </span>
+                </div>
+            </nav>
+            <div class="row">
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+
+                    <input class="btn btn-primary" type="button" value="Update" ng-click="randomVm.sendData()">
+
+                    <h4 ng-class="{'text-danger': randomVm.randomNumber === null }" ng-show="randomVm.message">{{randomVm.message}}</h4>
+
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

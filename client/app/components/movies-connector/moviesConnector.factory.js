@@ -35,8 +35,13 @@
         function movieInfo(movieId) {
             return $http.get('/api/movies/info/' + movieId);
         }
+
         function search(query) {
-            return $http.get('/api/movies/search/' + query);
+            return $http.get('/api/movies/search/' + query).then(function(response) {
+            var time = response.config.responseTimestamp - response.config.requestTimestamp;
+            console.log('The request took ' + (time / 1000) + ' seconds.');
+            return response;
+          });
         }
 
         function configuration() {

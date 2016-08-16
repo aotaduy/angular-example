@@ -1,5 +1,5 @@
 <div class="row">
-    <h2>Popular Movies {{listingVm.movies.length}} Votes: {{listingVm.totalVotes() | number}}</h2>
+    <h2>Popular Movies {{listingVm.movies.length}} Votes: {{::listingVm.totalVotes() | number}}</h2>
     <h2>
       <button class="btn btn-primary" ng-click="listingVm.reloadList()" name="button">Reload</button>
       <button class="btn btn-primary" ng-click="listingVm.movies.shift()" name="button">Remove First</button>

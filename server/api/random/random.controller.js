@@ -8,12 +8,14 @@
  */
 
 'use strict';
-
+var xml = require('xml')
 
 // Get list of things
 exports.fast = fast;
 exports.slow = slow;
 exports.faulty = faulty;
+exports.xml = xmlRoute;
+
 
 function fast(req, res) {
         res.json({value: Math.random()});
@@ -35,4 +37,10 @@ function faulty(req, res) {
         }
         res.json({value: value});
     }, Math.floor(1000 * Math.random()));
+}
+
+function xmlRoute(req, res) {
+      res.set('Content-Type', 'text/xml');
+        console.log(xml({value: Math.random()}));
+        res.send(xml({value: Math.random()}));
 }

@@ -25,12 +25,14 @@
           function reloadList() {
             vm.movies = getMovies();
           }
-
+        
         function totalVotes() {
+          console.log('calculando votos');
           return vm.movies.reduce(function (pValue, each) {
             return pValue + each.vote_count;
           }, 0)
         }
+
         function centerTitle(movie) {
           return movie.popularity > 6;
         }
@@ -40,7 +42,7 @@
 
         function getMovies() {
           var answer = [], movie;
-          for (var i = 0 ; i < 5000; i++) {
+          for (var i = 0 ; i < 700; i++) {
             movie = angular.copy(movies.data.results[Math.floor(Math.random() * movies.data.results.length)]);
             movie.identifier = i;
             answer.push(movie);
