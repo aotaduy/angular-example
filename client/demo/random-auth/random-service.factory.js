@@ -3,7 +3,7 @@
 
     // Create module and controller
     angular
-        .module('randomDemo')
+        .module('randomDemo2')
         .factory('randomService', randomFactory);
 
 
@@ -29,7 +29,7 @@
         return service;
 
         function getRandom(){
-            return $http.post('/api/random/fast')
+            return $http.get('/api/random/xml')
                 .then(function (response) {
                     service.values.push(response.data.value);
                     return response.data.value.toFixed(3);
@@ -56,7 +56,7 @@
         function getRandomArray(size){
             var calls = [];
             for (var i = 0; i < size; i++){
-                calls.push($http.get('/api/random/slow?' + i, {cache: false, timeout: 1000} ).then(function (response) {
+                calls.push($http.get('/api/random/slow?' + i , {timeout: 200}).then(function (response) {
                     return response.data.value.toFixed(3);
                 }));
             }

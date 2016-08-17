@@ -5,7 +5,7 @@
     angular
         .module('randomDemo', [])
         .config(configModule)
-      //  .run(runModule)
+        .run(runModule)
 
     function configModule() {
 

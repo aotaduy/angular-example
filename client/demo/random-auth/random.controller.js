@@ -3,7 +3,7 @@
 
     // Create module and controller
     angular
-        .module('randomDemo')
+        .module('randomDemo2')
         .controller('RandomController', RandomController);
 
 

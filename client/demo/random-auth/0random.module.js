@@ -3,12 +3,12 @@
 
     // Create module and controller
     angular
-        .module('randomDemo', [])
+        .module('randomDemo2', [])
         .config(configModule)
         .run(runModule)
 
     function configModule($httpProvider) {
-    //  $httpProvider.interceptors.push('timeoutRetry');
+      $httpProvider.interceptors.push('timeoutRetry');
 
     }
     runModule.$inject = [
@@ -19,7 +19,7 @@
     function runModule($http, $cacheFactory) {
         $http.defaults.cache = $cacheFactory('randomCache', {capacity: 3});
         console.log($http.defaults.cache);
-        //$http.defaults.transformResponse.push(transformFromXml);
+        $http.defaults.transformResponse.push(transformFromXml);
     }
 
     function transformFromXml(data, headers) {
@@ -30,9 +30,11 @@
             if ((contentType && (contentType.indexOf('text/xml') === 0))) {
                 answer = x2js.xml_str2json(data);
                 answer.value = parseFloat(answer.value);
+                return answer;
+
             }
         }
-        return answer;
+        return data;
     }
 
 })()

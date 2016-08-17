@@ -23,6 +23,7 @@ module.exports = function(config) {
       'client/app/app.js',
       'client/app/**/*.js',
       'client/components/**/*.js',
+      'client/demo/**/*.module.js',
       'client/demo/**/*.js',
       //'client/app/**/*.jade',
       //'client/components/**/*.jade',

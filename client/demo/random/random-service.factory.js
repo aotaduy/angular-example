@@ -27,7 +27,7 @@
         return service;
 
         function getRandom(){
-            return $http.get('/api/random/faulty')
+            return $http.get('/api/random/faulty', {timeout: 400})
                 .then(function (response) {
                     service.values.push(response.data.value);
                     return response.data.value.toFixed(3);
