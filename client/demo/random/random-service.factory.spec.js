@@ -46,7 +46,17 @@ describe('Service: randomService', function() {
             $timeout.flush();
             $rootScope.$digest();
         });
-
+        it('should getRandomNumberDeferred', function(done) {
+            service.getRandomDeferred().then(function (response) {
+              expect(response).to.equal((0.7).toFixed(3));
+              done();
+            });
+            service.getRandomDeferred().then(function (response) {
+              done();
+            });
+            $timeout.flush();
+            $rootScope.$digest();
+        });
         it('should calculate mean', function() {
             service.getRandom();
             service.getRandom();
@@ -73,7 +83,7 @@ describe('Service: randomService', function() {
             });
             $httpBackend.flush();
         });
-        it('should getRandomNumber', function() {
+        it('should getRandomNumberDeferred', function() {
             service.getRandomDeferred().catch(function (response) {
                 expect(response.status).to.equal(404);
             });

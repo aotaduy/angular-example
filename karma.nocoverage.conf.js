@@ -29,13 +29,12 @@ module.exports = function(config) {
       'client/components/**/*.html',
     ],
 
-    reporters: ['progress', 'coverage'],
+    reporters: ['progress'],
 
     preprocessors: {
       '**/*.jade': 'ng-jade2js',
       '**/*.html': 'html2js',
       '**/*.coffee': 'coffee',
-      'client/app/**/*.js' : ['coverage']
     },
 
     ngHtml2JsPreprocessor: {
@@ -60,7 +59,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
 
     // Start these browsers, currently available:

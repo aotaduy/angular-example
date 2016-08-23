@@ -23,6 +23,7 @@
 
         // Controller methods
         vm.updateNextRandom = updateNextRandom;
+        vm.updateNextRandomLocal = updateNextRandomLocal;
         vm.getRandomArray = getRandomArray;
         vm.getMean = randomService.mean;
 
@@ -40,6 +41,18 @@
                 .catch(handleError);
         }
 
+        function updateNextRandomLocal() {
+            vm.message = 'Updating...';
+            vm.randomNumber = 0;
+            randomService.getRandomDeferred()
+                .then(function(aValue) {
+                    vm.status = 200;
+                    vm.message = null;
+                    vm.randomNumber = aValue;
+                    vm.messageHistory = vm.messageHistory + aValue + '\n';
+                })
+                .catch(handleError);
+        }
         function handleError(aResponse) {
             vm.message = 'Failed with: ' + aResponse.status + ' ' + aResponse.data.value;
             vm.randomNumber = null;

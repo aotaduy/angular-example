@@ -6,11 +6,9 @@ angular.module('moviesApp', [
   'ngResource',
   'ngSanitize',
   'ui.router',
-  'ui.bootstrap',
-  'ngAnimate'
+  'ui.bootstrap'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
-
 
     $locationProvider.html5Mode(true);
   });

@@ -10,10 +10,11 @@
     randomFactory.$inject = [
         '$http',
         '$q',
-        '$timeout'
+        '$timeout',
+        '$rootScope'
     ];
 
-    function randomFactory($http, $q, $timeout) {
+    function randomFactory($http, $q, $timeout, $rootScope) {
         var service =  {
             values: [],
             mean: mean,
@@ -30,9 +31,11 @@
             return $http.get('/api/random/faulty', {timeout: 400})
                 .then(function (response) {
                     service.values.push(response.data.value);
+                    $rootScope.$broadcast('randomGenerated', response.data.value);
                     return response.data.value.toFixed(3);
                 }, function (response) {
                     response.data.value = response.data.value.toFixed(3);
+                    $rootScope.$broadcast('randomError', response.data.value);
                     return $q.reject(response);
                 });
         }
@@ -56,6 +59,7 @@
             var deferred = $q.defer();
             $timeout(function () {
                 var number = Math.random().toFixed(3);
+                $rootScope.$emit('randomGenerated', number);
                 if (number < 0.5){
                     deferred.reject({
                         status: 404,

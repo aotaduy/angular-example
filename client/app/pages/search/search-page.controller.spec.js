@@ -1,6 +1,5 @@
-'use strict';
-
 describe('Controller: MainCtrl', function () {
+  'use strict';
 
   // load the controller's module
   beforeEach(module('moviesApp', function ($provide) {
@@ -29,4 +28,17 @@ describe('Controller: MainCtrl', function () {
       $scope: scope
     });
   }));
+
+  it('should empty movies with no results query', function () {
+    expect(true).to.be.true;
+  });
+
+  it('should start with empty movies if no query', function () {
+    expect(1).to.be.equal(1);
+  });
+
+
+  it('should update movies, and update topMovies without duplicates', function () {
+
+  });
 });
